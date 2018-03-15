@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\DpdWs\Exception;
+use Ekyna\Component\Dpd\Exception;
 
 /**
  * Class AbstractField
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractField implements FieldInterface

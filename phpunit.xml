@@ -10,7 +10,7 @@
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
 
-    <testsuite name="DpdWs">
+    <testsuite name="Dpd">
         <directory suffix="Test.php">tests</directory>
     </testsuite>
 

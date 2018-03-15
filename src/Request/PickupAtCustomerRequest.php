@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model;
 
 /**
  * Class PickupAtCustomerRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property Model\Address        $shipperaddress        Adresse expéditeur
@@ -25,10 +25,10 @@ class PickupAtCustomerRequest extends Model\AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('shipperaddress', true, Model\Address::class))
-            ->addField(new Definition\Object('customer', true, Model\Customer::class))
-            ->addField(new Definition\AlphaNumeric('pick_date', true, 10))
-            ->addField(new Definition\Object('data', false, Model\PickupData::class))
-            ->addField(new Definition\ArrayOfObjects('shipments', false, Model\Parcel::class));
+            ->addField(new Definition\Model('shipperaddress', true, Model\Address::class))
+            ->addField(new Definition\Model('customer', true, Model\Customer::class))
+            ->addField(new Definition\Date('pick_date', true))
+            ->addField(new Definition\Model('data', false, Model\PickupData::class))
+            ->addField(new Definition\ArrayOfModel('shipments', false, Model\Parcel::class));
     }
 }

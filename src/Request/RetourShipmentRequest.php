@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model;
 
 /**
  * Class RetourShipmentRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property int $countrycode           Code pays (250 = France)

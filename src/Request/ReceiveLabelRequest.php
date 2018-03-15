@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model;
 
 /**
  * Class ReceiveLabelRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property int             $countrycode  Code pays (250 = France)
@@ -27,6 +27,6 @@ class ReceiveLabelRequest extends Model\AbstractModel
             ->addField(new Definition\Numeric('countrycode', true, 3))
             ->addField(new Definition\Numeric('centernumber', true, 3))
             ->addField(new Definition\Numeric('parcelnumber', true, 9))
-            ->addField(new Definition\Object('labelType', false, Model\LabelType::class));
+            ->addField(new Definition\Model('labelType', false, Model\LabelType::class));
     }
 }

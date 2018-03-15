@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class PickupData
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property string    $time_from   Optionnel (par défaut : 08:00)
@@ -24,8 +24,8 @@ class PickupData extends AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\AlphaNumeric('time_from', true, 5))
-            ->addField(new Definition\AlphaNumeric('time_to', true, 5))
+            ->addField(new Definition\Time('time_from', true))
+            ->addField(new Definition\Time('time_to', true))
             ->addField(new Definition\AlphaNumeric('remark', true, 35))
             ->addField(new Definition\AlphaNumeric('pick_remark', true, 35))
             ->addField(new Definition\Boolean('dayCheckDone', false)); // TODO nullable

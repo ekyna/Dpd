@@ -1,17 +1,17 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\DpdWs\Exception;
-use Ekyna\Component\DpdWs\Model\ModelInterface;
+use Ekyna\Component\Dpd\Exception;
+use Ekyna\Component\Dpd\Model\ModelInterface;
 
 /**
- * Class ArrayOfObjects
- * @package Ekyna\Component\DpdWs\Definition
+ * Class ArrayOfModel
+ * @package Ekyna\Component\Dpd\Definition
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-class ArrayOfObjects extends AbstractField
+class ArrayOfModel extends AbstractField
 {
     /**
      * @var string

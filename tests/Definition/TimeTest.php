@@ -5,15 +5,15 @@ namespace Ekyna\Component\Dpd\Definition;
 use Ekyna\Component\Dpd\TestCase;
 
 /**
- * Class BooleanTest
+ * Class TimeTest
  * @author  Etienne Dauvergne <contact@ekyna.com>
  * @package Ekyna\Component\Dpd
  */
-class BooleanTest extends TestCase
+class TimeTest extends TestCase
 {
     public function test_validate_not_required_with_empty_value()
     {
-        $field = new Boolean('test', false);
+        $field = new Time('test', false);
         $field->validate(null);
 
         $this->assertTrue(true);
@@ -23,23 +23,30 @@ class BooleanTest extends TestCase
     {
         $this->expectValidationException();
 
-        $field = new Boolean('test', true);
+        $field = new Time('test', true);
         $field->validate(null);
     }
 
-    public function test_validate_required_with_non_bool_value()
+    public function test_validate_required_with_invalid_value()
     {
         $this->expectValidationException();
 
-        $field = new Boolean('test', true);
+        $field = new Time('test', true);
         $field->validate('test');
     }
 
-    public function test_validate_required_with_bool_value()
+    public function test_validate_required_with_invalid_time()
     {
-        $field = new Boolean('test', true);
-        $field->validate(true);
-        $field->validate(false);
+        $this->expectValidationException();
+
+        $field = new Time('test', true);
+        $field->validate('00-00');
+    }
+
+    public function test_validate_required_with_valid_time()
+    {
+        $field = new Time('test', true);
+        $field->validate('00:00');
 
         $this->assertTrue(true);
     }

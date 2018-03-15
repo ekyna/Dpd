@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model\LabelType;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model\LabelType;
 
 /**
  * Class ReverseShipmentLabelRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property string    $receiver_contact_name
@@ -28,7 +28,7 @@ class ReverseShipmentLabelRequest extends ReverseShipmentRequest
         $definition
             ->addField(new Definition\AlphaNumeric('receiver_contact_name', false, 35))// TODO length missing in doc
             ->addField(new Definition\AlphaNumeric('customLabelText', false, 400))
-            ->addField(new Definition\Object('labelType', false, LabelType::class))
+            ->addField(new Definition\Model('labelType', false, LabelType::class))
             ->addField(new Definition\Boolean('refasbarcode', true));
     }
 }

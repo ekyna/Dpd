@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition\Definition;
+use Ekyna\Component\Dpd\Definition\Definition;
 
 /**
  * Class AbstractModel
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractModel implements ModelInterface

@@ -1,11 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Enum;
+namespace Ekyna\Component\Dpd\Enum;
 
 /**
  * Class ETypeConsolidation
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 final class ETypeConsolidation implements EnumInterface

@@ -1,11 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
 /**
  * Class Boolean
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class Boolean extends AbstractField

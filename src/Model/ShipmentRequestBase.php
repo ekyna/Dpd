@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class ShipmentRequestBase
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property Address     $receiveraddress       Adresse destinataire
@@ -27,13 +27,13 @@ class ShipmentRequestBase extends AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('receiveraddress', false, Address::class))
-            ->addField(new Definition\Object('receiverinfo', false, AddressInfo::class))
-            ->addField(new Definition\Object('shipperaddress', false, Address::class))
-            ->addField(new Definition\Object('retourAddress', false, Address::class))
+            ->addField(new Definition\Model('receiveraddress', false, Address::class))
+            ->addField(new Definition\Model('receiverinfo', false, AddressInfo::class))
+            ->addField(new Definition\Model('shipperaddress', false, Address::class))
+            ->addField(new Definition\Model('retourAddress', false, Address::class))
             ->addField(new Definition\Numeric('customer_countrycode', true, 3))
             ->addField(new Definition\Numeric('customer_centernumber', true, 3))
             ->addField(new Definition\Numeric('customer_number', true, 6))
-            ->addField(new Definition\AlphaNumeric('shippingdate', false, 10));
+            ->addField(new Definition\Date('shippingdate', false));
     }
 }

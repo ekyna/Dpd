@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\DpdWs\Exception\DefinitionException;
+use Ekyna\Component\Dpd\Exception\DefinitionException;
 
 /**
  * Class Definition
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class Definition

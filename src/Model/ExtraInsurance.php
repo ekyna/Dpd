@@ -1,20 +1,20 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Enum\ETypeInsurance;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Enum\ETypeInsurance;
 
 /**
  * Class ExtraInsurance
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property string $value Montant de la valeur déclarée
  * @property string $type  Type de valeur déclarée
  *
- * @see \Ekyna\Component\DpdWs\Enum\ETypeInsurance
+ * @see \Ekyna\Component\Dpd\Enum\ETypeInsurance
  */
 class ExtraInsurance extends AbstractModel
 {

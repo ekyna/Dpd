@@ -1,11 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Enum;
+namespace Ekyna\Component\Dpd\Enum;
 
 /**
  * Interface EnumInterface
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 interface EnumInterface

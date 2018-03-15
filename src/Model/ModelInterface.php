@@ -1,11 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
 /**
  * Interface ModelInterface
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 interface ModelInterface
@@ -15,7 +15,7 @@ interface ModelInterface
      *
      * @param string $prefix The fields name's prefix
      *
-     * @throws \Ekyna\Component\DpdWs\Exception\ValidationException
+     * @throws \Ekyna\Component\Dpd\Exception\ValidationException
      */
     public function validate(string $prefix = null): void;
 

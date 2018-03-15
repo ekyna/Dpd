@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class ShipmentRequestDefaultData
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property StdServices $services
@@ -21,6 +21,6 @@ class ShipmentRequestDefaultData extends ShipmentRequestBase
     {
         parent::buildDefinition($definition);
 
-        $definition->addField(new Definition\Object('services', false, StdServices::class));
+        $definition->addField(new Definition\Model('services', false, StdServices::class));
     }
 }

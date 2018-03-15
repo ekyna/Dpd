@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\DpdWs\Enum\EnumInterface;
-use Ekyna\Component\DpdWs\Exception;
+use Ekyna\Component\Dpd\Enum\EnumInterface;
+use Ekyna\Component\Dpd\Exception;
 
 /**
  * Class Enum
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class Enum extends AbstractField

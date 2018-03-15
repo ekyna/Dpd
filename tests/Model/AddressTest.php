@@ -1,13 +1,13 @@
 <?php
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\TestCase;
+use Ekyna\Component\Dpd\TestCase;
 
 /**
  * Class AddressTest
  * @author  Etienne Dauvergne <contact@ekyna.com>
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  */
 class AddressTest extends TestCase
 {

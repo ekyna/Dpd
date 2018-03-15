@@ -1,12 +1,12 @@
 <?php
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class ReverseInverseServices
- * @package Ekyna\Component\DpdWs\Model
+ * @package Ekyna\Component\Dpd\Model
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property ExtraInsurance $extraInsurance Valeur déclarée
@@ -20,7 +20,7 @@ class ReverseInverseServices extends AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('extraInsurance', false, ExtraInsurance::class))
-            ->addField(new Definition\Object('contact', false, Contact::class));
+            ->addField(new Definition\Model('extraInsurance', false, ExtraInsurance::class))
+            ->addField(new Definition\Model('contact', false, Contact::class));
     }
 }

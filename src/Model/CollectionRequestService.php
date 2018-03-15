@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class CollectionRequestService
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property ExtraInsurance           $extraInsurance
@@ -21,7 +21,7 @@ class CollectionRequestService extends AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('extraInsurance', false, ExtraInsurance::class))
-            ->addField(new Definition\Object('contact', false, ContactCollectionRequest::class));
+            ->addField(new Definition\Model('extraInsurance', false, ExtraInsurance::class))
+            ->addField(new Definition\Model('contact', false, ContactCollectionRequest::class));
     }
 }

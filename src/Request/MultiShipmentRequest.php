@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model;
 
 /**
  * Class MultiShipmentRequest
- * @package Ekyna\Component\DpdWs\Model
+ * @package Ekyna\Component\Dpd\Model
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property Model\MultiServices        $services
@@ -25,8 +25,8 @@ class MultiShipmentRequest extends Model\ShipmentRequestBase
         parent::buildDefinition($definition);
 
         $definition
-            ->addField(new Definition\Object('services', false, Model\MultiServices::class))
-            ->addField(new Definition\Object('contact', false, Model\Contact::class))
-            ->addField(new Definition\ArrayOfObjects('slaves', false, Model\SlaveRequest::class));
+            ->addField(new Definition\Model('services', false, Model\MultiServices::class))
+            ->addField(new Definition\Model('contact', false, Model\Contact::class))
+            ->addField(new Definition\ArrayOfModel('slaves', false, Model\SlaveRequest::class));
     }
 }

@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model;
 
 /**
  * Class CollectionRequestRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property Model\Address $receiveraddress       Adresse destinataire
@@ -38,13 +38,13 @@ class CollectionRequestRequest extends Model\AbstractModel
             ->addField(new Definition\Numeric('customer_countrycode', true, 3))
             ->addField(new Definition\Numeric('customer_centernumber', true, 3))
             ->addField(new Definition\Numeric('customer_number', true, 6))
-            ->addField(new Definition\Object('receiveraddress', true, Model\Address::class))// optional in WSDL / required in doc
-            ->addField(new Definition\Object('shipperaddress', true, Model\Address::class))// optional in WSDL / required in doc
-            ->addField(new Definition\Object('services', true, Model\CollectionRequestService::class))
+            ->addField(new Definition\Model('receiveraddress', true, Model\Address::class))// optional in WSDL / required in doc
+            ->addField(new Definition\Model('shipperaddress', true, Model\Address::class))// optional in WSDL / required in doc
+            ->addField(new Definition\Model('services', true, Model\CollectionRequestService::class))
             ->addField(new Definition\Numeric('parcel_count', true, 2))
-            ->addField(new Definition\AlphaNumeric('pick_date', false, 10))
-            ->addField(new Definition\AlphaNumeric('time_from', false, 5))
-            ->addField(new Definition\AlphaNumeric('time_to', false, 5))
+            ->addField(new Definition\Date('pick_date', false))
+            ->addField(new Definition\Time('time_from', false))
+            ->addField(new Definition\Time('time_to', false))
             ->addField(new Definition\AlphaNumeric('remark', false, 35))
             ->addField(new Definition\AlphaNumeric('pick_remark', false, 35))
             ->addField(new Definition\AlphaNumeric('delivery_remark', false, 35))

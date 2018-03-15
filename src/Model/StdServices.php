@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class StdServices
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property ExtraInsurance       $extraInsurance
@@ -26,12 +26,12 @@ class StdServices extends AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('extraInsurance', false, ExtraInsurance::class))
-            ->addField(new Definition\Object('contact', false, Contact::class))
-            ->addField(new Definition\Object('parcelShop', false, ParcelShop::class))
-            ->addField(new Definition\Object('reverse', false, Reverse::class))
-            ->addField(new Definition\Object('reverseInverseReturn', false, ReverseInverseReturn::class))
-            ->addField(new Definition\Object('autoConsolidation', false, AutoConsolidation::class))
-            ->addField(new Definition\Object('bic3', false, Bic3::class));
+            ->addField(new Definition\Model('extraInsurance', false, ExtraInsurance::class))
+            ->addField(new Definition\Model('contact', false, Contact::class))
+            ->addField(new Definition\Model('parcelShop', false, ParcelShop::class))
+            ->addField(new Definition\Model('reverse', false, Reverse::class))
+            ->addField(new Definition\Model('reverseInverseReturn', false, ReverseInverseReturn::class))
+            ->addField(new Definition\Model('autoConsolidation', false, AutoConsolidation::class))
+            ->addField(new Definition\Model('bic3', false, Bic3::class));
     }
 }

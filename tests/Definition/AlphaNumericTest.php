@@ -1,13 +1,13 @@
 <?php
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\DpdWs\TestCase;
+use Ekyna\Component\Dpd\TestCase;
 
 /**
  * Class AlphaNumericTest
  * @author  Etienne Dauvergne <contact@ekyna.com>
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  */
 class AlphaNumericTest extends TestCase
 {

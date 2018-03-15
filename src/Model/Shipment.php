@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Enum\EType;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Enum\EType;
 
 /**
  * Class Shipment
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property int $countrycode  Code pays (250 = France)

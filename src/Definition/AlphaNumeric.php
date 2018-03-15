@@ -1,11 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
 /**
  * Class AlphaNumeric
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class AlphaNumeric extends AbstractField
@@ -44,7 +44,7 @@ class AlphaNumeric extends AbstractField
         }
 
         if (!is_string($value) || empty($value)) {
-            $this->throwValidationException("Unexpected string value", $prefix);
+            $this->throwValidationException("Expected string value", $prefix);
         }
 
         if (strlen($value) > $this->length) {

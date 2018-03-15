@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class SlaveRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property string $weight          Poids
@@ -30,6 +30,6 @@ class SlaveRequest extends AbstractModel
             ->addField(new Definition\AlphaNumeric('referencenumber', false, 35))
             ->addField(new Definition\AlphaNumeric('reference2', false, 35))
             ->addField(new Definition\AlphaNumeric('reference3', false, 35))
-            ->addField(new Definition\Object('services', false, SlaveServices::class));
+            ->addField(new Definition\Model('services', false, SlaveServices::class));
     }
 }

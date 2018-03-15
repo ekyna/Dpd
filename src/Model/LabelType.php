@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Enum\ELabelType;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Enum\ELabelType;
 
 /**
  * Class LabelType
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property string $type PNG / PDF / PDF_A6

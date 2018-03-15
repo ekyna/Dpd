@@ -1,14 +1,14 @@
 <?php
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\DpdWs\Enum\EnumInterface;
-use Ekyna\Component\DpdWs\TestCase;
+use Ekyna\Component\Dpd\Enum\EnumInterface;
+use Ekyna\Component\Dpd\TestCase;
 
 /**
  * Class EnumTest
  * @author  Etienne Dauvergne <contact@ekyna.com>
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  */
 class EnumTest extends TestCase
 {

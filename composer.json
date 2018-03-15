@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ekyna\\Component\\DpdWs\\": "src/"
+            "Ekyna\\Component\\Dpd\\": "src/"
         }
     }
 }

@@ -1,11 +1,11 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Definition;
+namespace Ekyna\Component\Dpd\Definition;
 
 /**
  * Interface FieldInterface
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 interface FieldInterface
@@ -23,7 +23,7 @@ interface FieldInterface
      * @param mixed  $value
      * @param string $prefix
      *
-     * @throws \Ekyna\Component\DpdWs\Exception\ValidationException
+     * @throws \Ekyna\Component\Dpd\Exception\ValidationException
      */
     public function validate($value, string $prefix = null): void;
 }

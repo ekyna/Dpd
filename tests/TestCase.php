@@ -1,14 +1,14 @@
 <?php
 
-namespace Ekyna\Component\DpdWs;
+namespace Ekyna\Component\Dpd;
 
-use Ekyna\Component\DpdWs\Exception;
-
+use Ekyna\Component\Dpd\Exception;
+use Ekyna\Component\Dpd\Model\AbstractModel;
 
 /**
  * Class TestCase
  * @author  Etienne Dauvergne <contact@ekyna.com>
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
@@ -20,5 +20,30 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected function expectRuntimeException()
     {
         $this->expectException(Exception\RuntimeException::class);
+    }
+}
+
+/**
+ * Class InvalidTestModel
+ * @package Ekyna\Component\Dpd
+ * @author  Etienne Dauvergne <contact@ekyna.com>
+ */
+class InvalidTestModel
+{
+
+}
+
+/**
+ * Class ValidTestModel
+ * @package Ekyna\Component\Dpd
+ * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @property string $test
+ */
+class ValidTestModel extends AbstractModel
+{
+    protected function buildDefinition(Definition\Definition $definition): void
+    {
+        $definition->addField(new Definition\Boolean('test', true));
     }
 }

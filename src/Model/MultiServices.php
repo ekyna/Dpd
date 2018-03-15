@@ -1,13 +1,13 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Model;
+namespace Ekyna\Component\Dpd\Model;
 
-use Ekyna\Component\DpdWs\Definition;
+use Ekyna\Component\Dpd\Definition;
 
 /**
  * Class MultiServices
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property Consolidation $consolidation Consolidation déclarative
@@ -22,8 +22,8 @@ class MultiServices extends AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('consolidation', false, Consolidation::class))
-            ->addField(new Definition\Object('contact', false, Contact::class))
-            ->addField(new Definition\Object('pickupAtCustomer', false, PickupData::class));
+            ->addField(new Definition\Model('consolidation', false, Consolidation::class))
+            ->addField(new Definition\Model('contact', false, Contact::class))
+            ->addField(new Definition\Model('pickupAtCustomer', false, PickupData::class));
     }
 }

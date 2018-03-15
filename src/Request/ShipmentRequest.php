@@ -1,14 +1,14 @@
 <?php
 declare (strict_types=1);
 
-namespace Ekyna\Component\DpdWs\Request;
+namespace Ekyna\Component\Dpd\Request;
 
-use Ekyna\Component\DpdWs\Definition;
-use Ekyna\Component\DpdWs\Model;
+use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Model;
 
 /**
  * Class ShipmentRequest
- * @package Ekyna\Component\DpdWs
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property Model\Parcel  $parcel
@@ -22,7 +22,7 @@ class ShipmentRequest extends Model\AbstractModel
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
-            ->addField(new Definition\Object('parcel', true, Model\Parcel::class))
-            ->addField(new Definition\Object('customer', true, Model\Customer::class));
+            ->addField(new Definition\Model('parcel', true, Model\Parcel::class))
+            ->addField(new Definition\Model('customer', true, Model\Customer::class));
     }
 }
