@@ -1,0 +1,36 @@
+<?php
+declare (strict_types=1);
+
+namespace Ekyna\Component\DpdWs\Enum;
+
+/**
+ * Class ELabelType
+ * @package Ekyna\Component\DpdWs
+ * @author  Etienne Dauvergne <contact@ekyna.com>
+ */
+final class ELabelType implements EnumInterface
+{
+    const DEFAULT = 'Default'; // Format PNG (valeur par défaut)
+    const PDF     = 'PDF';     // Format PDF
+    const PDF_A6  = 'PDF_A6';  // Format PDF – A6
+
+
+    /**
+     * @inheritdoc
+     */
+    public static function getValues(): array
+    {
+        return [
+            static::DEFAULT,
+            static::PDF,
+            static::PDF_A6,
+        ];
+    }
+
+    /**
+     * Disabled Constructor.
+     */
+    private function __construct()
+    {
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "ekyna/dpd",
+    "description": "PHP component for DPD shipment",
+    "type": "component",
+    "authors": [
+        {
+            "name": "Etienne Dauvergne",
+            "homepage": "http://ekyna.com"
+        }
+    ],
+    "keywords": [
+        "php",
+        "dpd",
+        "shipment",
+        "web service"
+    ],
+    "homepage": "https://github.com/ekyna/Dpd",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ekyna\\Component\\DpdWs\\": "src/"
+        }
+    }
+}
