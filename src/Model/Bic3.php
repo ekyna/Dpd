@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\Definition;
  *
  * @property string $type
  */
-class Bic3 extends AbstractModel
+class Bic3 extends AbstractInput
 {
     /**
      * @inheritdoc

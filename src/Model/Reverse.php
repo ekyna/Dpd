@@ -17,7 +17,7 @@ use Ekyna\Component\Dpd\Enum\ETypeReverse;
  *
  * @see ETypeReverse
  */
-class Reverse extends AbstractModel
+class Reverse extends AbstractInput
 {
     /**
      * @inheritdoc

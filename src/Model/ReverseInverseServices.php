@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property ExtraInsurance $extraInsurance Valeur déclarée
  * @property Contact        $contact        Nom du contact
  */
-class ReverseInverseServices extends AbstractModel
+class ReverseInverseServices extends AbstractInput
 {
     /**
      * @inheritdoc

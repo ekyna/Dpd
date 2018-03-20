@@ -15,7 +15,7 @@ use Ekyna\Component\Dpd\Enum\ETypeConsolidation;
  *
  * @see ETypeConsolidation
  */
-class Consolidation extends AbstractModel
+class Consolidation extends AbstractInput
 {
     /**
      * @inheritdoc

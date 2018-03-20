@@ -13,7 +13,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property string $shipper_email
  * @property string $shipper_mobil
  */
-class ContactCollectionRequest extends AbstractModel
+class ContactCollectionRequest extends AbstractInput
 {
     /**
      * @inheritdoc

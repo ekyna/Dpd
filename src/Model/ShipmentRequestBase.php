@@ -4,6 +4,7 @@ declare (strict_types=1);
 namespace Ekyna\Component\Dpd\Model;
 
 use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\Request\RequestInterface;
 
 /**
  * Class ShipmentRequestBase
@@ -19,7 +20,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property string      $customer_number       N° de compte
  * @property string      $shippingdate          Date d'expédition théorique JJ.MM.AAAA
  */
-class ShipmentRequestBase extends AbstractModel
+class ShipmentRequestBase extends AbstractInput implements RequestInterface
 {
     /**
      * @inheritdoc

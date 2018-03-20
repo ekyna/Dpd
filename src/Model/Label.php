@@ -16,7 +16,7 @@ use Ekyna\Component\Dpd\Enum\EType;
  *
  * @see EType
  */
-class Label extends AbstractModel
+class Label extends AbstractInput
 {
     /**
      * @inheritdoc
@@ -25,6 +25,6 @@ class Label extends AbstractModel
     {
         $definition
             ->addField(new Definition\Enum('type', true, EType::class))
-            ->addField(new Definition\AlphaNumeric('label', false, 3)); // TODO base64Binary / bytesArray
+            ->addField(new Definition\AlphaNumeric('label', false, 3));
     }
 }

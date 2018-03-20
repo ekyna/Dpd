@@ -13,10 +13,33 @@ use Ekyna\Component\Dpd\Model;
  *
  * @property Model\MultiServices        $services
  * @property Model\Contact              $contact
- * @property array|Model\SlaveRequest[] $slaves
  */
 class MultiShipmentRequest extends Model\ShipmentRequestBase
 {
+    /**
+     * @var Model\SlaveRequest[]
+     */
+    public $slaves;
+
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->slaves = [];
+    }
+
+    /**
+     * Adds the slave shipment request.
+     *
+     * @param Model\SlaveRequest $slave
+     */
+    public function addSlave(Model\SlaveRequest $slave)
+    {
+        $this->slaves[] = $slave;
+    }
+
     /**
      * @inheritdoc
      */

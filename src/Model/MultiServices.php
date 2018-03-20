@@ -14,7 +14,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property Contact       $contact
  * @property PickupData    $pickupAtCustomer
  */
-class MultiServices extends AbstractModel
+class MultiServices extends AbstractInput
 {
     /**
      * @inheritdoc

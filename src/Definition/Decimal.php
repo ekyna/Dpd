@@ -54,6 +54,8 @@ class Decimal extends AbstractField
             $this->throwValidationException("Unexpected string value", $prefix);
         }
 
+        $value = (string)$value;
+
         if (false !== strpos($value, '.')) {
             list($integer, $decimal) = explode('.', $value);
         } else if (0 === strpos($value, '.')) {

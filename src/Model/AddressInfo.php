@@ -20,7 +20,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property string $vinfo1     Commentaire de livraison 1
  * @property string $vinfo2     Commentaire de livraison 2
  */
-class AddressInfo extends AbstractModel
+class AddressInfo extends AbstractInput
 {
     /**
      * @inheritdoc

@@ -10,9 +10,9 @@ namespace Ekyna\Component\Dpd\Enum;
  */
 final class ELabelType implements EnumInterface
 {
-    const DEFAULT = 'Default'; // Format PNG (valeur par défaut)
-    const PDF     = 'PDF';     // Format PDF
-    const PDF_A6  = 'PDF_A6';  // Format PDF – A6
+    const PNG    = 'Default'; // Format PNG (valeur par défaut)
+    const PDF    = 'PDF';     // Format PDF
+    const PDF_A6 = 'PDF_A6';  // Format PDF – A6
 
 
     /**
@@ -21,7 +21,7 @@ final class ELabelType implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::DEFAULT,
+            static::PNG,
             static::PDF,
             static::PDF_A6,
         ];

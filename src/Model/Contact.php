@@ -18,7 +18,7 @@ use Ekyna\Component\Dpd\Enum\ETypeContact;
  *
  * @see ETypeContact
  */
-class Contact extends AbstractModel
+class Contact extends AbstractInput
 {
     /**
      * @inheritdoc

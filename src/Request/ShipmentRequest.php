@@ -11,10 +11,10 @@ use Ekyna\Component\Dpd\Model;
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
- * @property Model\Parcel  $parcel
- * @property Model\Contact $contact
+ * @property Model\Parcel   $parcel
+ * @property Model\Customer $customer
  */
-class ShipmentRequest extends Model\AbstractModel
+class ShipmentRequest extends Model\AbstractInput implements RequestInterface
 {
     /**
      * @inheritdoc

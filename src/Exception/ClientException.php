@@ -10,6 +10,17 @@ namespace Ekyna\Component\Dpd\Exception;
 class ClientException extends \RuntimeException implements ExceptionInterface
 {
     /**
+     * @var string
+     */
+    public $request;
+
+    /**
+     * @var string
+     */
+    public $response;
+
+
+    /**
      * Creates a new client exception.
      *
      * @param \SoapClient $client
@@ -19,11 +30,12 @@ class ClientException extends \RuntimeException implements ExceptionInterface
      */
     static function create(\SoapClient $client, \Exception $exception)
     {
-        $message = $exception->getMessage() . "\n\n" .
-            "Request: " . static::formatXml($client->__getLastRequest()) . "\n\n" .
-            "Response: " . static::formatXml($client->__getLastResponse());
+        $exception = new static($exception->getMessage(), $exception->getCode(), $exception);
 
-        return new static($message, $exception->getCode(), $exception);
+        $exception->request = static::formatXml($client->__getLastRequest());
+        $exception->response = static::formatXml($client->__getLastResponse());
+
+        return $exception;
     }
 
     /**
@@ -35,6 +47,10 @@ class ClientException extends \RuntimeException implements ExceptionInterface
      */
     static function formatXml($xml)
     {
+        if (empty($xml)) {
+            return null;
+        }
+
         $doc = new \DOMDocument();
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;

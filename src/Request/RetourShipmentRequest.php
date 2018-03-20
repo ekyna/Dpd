@@ -15,7 +15,7 @@ use Ekyna\Component\Dpd\Model;
  * @property int $centernumber          Code agence
  * @property int $original_parcelnumber N° de colis originel
  */
-class RetourShipmentRequest extends Model\AbstractModel
+class RetourShipmentRequest extends Model\AbstractInput implements RequestInterface
 {
     /**
      * @inheritdoc

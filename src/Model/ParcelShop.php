@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\Definition;
  *
  * @property ShopAddress $shopaddress Adresse complète du Point DPD Relais
  */
-class ParcelShop extends AbstractModel
+class ParcelShop extends AbstractInput
 {
     /**
      * @inheritdoc

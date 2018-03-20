@@ -4,6 +4,8 @@ declare (strict_types=1);
 namespace Ekyna\Component\Dpd;
 
 use Ekyna\Component\Dpd\Exception\ClientException;
+use Ekyna\Component\Dpd\Model;
+use Ekyna\Component\Dpd\Response\ResponseInterface;
 
 /**
  * Class Client
@@ -51,8 +53,26 @@ class Client extends \Soapclient
         $this->debug = $debug;
 
         parent::__construct(static::WSDL, [
-            'cache_wsdl' => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
-            'trace'      => $debug ? 1 : 0,
+            'cache_wsdl'   => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
+            'trace'        => $debug ? 1 : 0,
+            'soap_version' => SOAP_1_2,
+            'compression'  => true,
+            'classmap'     => [
+                'CreateShipmentWithLabelsResponse' => Response\CreateShipmentWithLabelsResponse::class,
+                'ShipmentsWithLabels'              => Model\ShipmentsWithLabels::class,
+                'ArrayOfShipment'                  => Model\ArrayOfShipment::class,
+                'ArrayOfLabel'                     => Model\ArrayOfLabel::class,
+                'Shipment'                         => Model\Shipment::class,
+                'Label'                            => Model\Label::class,
+                'Address'                          => Model\Address::class,
+                'Contact'                          => Model\Contact::class,
+                'CreateMultiShipmentResponse'      => Response\CreateMultiShipmentResponse::class,
+                'MultiShipment'                    => Model\MultiShipment::class,
+                'GetShipmentResponse'              => Response\GetShipmentResponse::class,
+                'ShipmentDataExtended'             => Model\ShipmentDataExtended::class,
+                'GetLabelResponse'                 => Response\GetLabelResponse::class,
+                'LabelResponse'                    => Model\LabelResponse::class,
+            ],
         ]);
     }
 
@@ -62,7 +82,9 @@ class Client extends \Soapclient
      * @param string $method
      * @param array  $arguments
      *
-     * @return mixed
+     * @return ResponseInterface
+     *
+     * @throws ClientException
      */
     public function call(string $method, array $arguments)
     {
@@ -73,7 +95,7 @@ class Client extends \Soapclient
                 throw ClientException::create($this, $exception);
             }
 
-            throw $exception;
+            throw new ClientException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 

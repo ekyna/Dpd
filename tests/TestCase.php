@@ -3,7 +3,7 @@
 namespace Ekyna\Component\Dpd;
 
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\Model\AbstractModel;
+use Ekyna\Component\Dpd\Model\AbstractInput;
 
 /**
  * Class TestCase
@@ -40,7 +40,7 @@ class InvalidTestModel
  *
  * @property string $test
  */
-class ValidTestModel extends AbstractModel
+class ValidTestModel extends AbstractInput
 {
     protected function buildDefinition(Definition\Definition $definition): void
     {

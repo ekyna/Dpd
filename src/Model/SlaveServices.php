@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\Definition;
  *
  * @property ExtraInsurance $extraInsurance Valeur déclarée
  */
-class SlaveServices extends AbstractModel
+class SlaveServices extends AbstractInput
 {
     /**
      * @inheritdoc

@@ -26,7 +26,7 @@ class Date extends AbstractField
             $this->throwValidationException("Expected string value", $prefix);
         }
 
-        if (!preg_match('~^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$~', $value)) {
+        if (!preg_match('~^[0-9]{2}[\./][0-9]{2}[\./][0-9]{4}$~', $value)) {
             $this->throwValidationException("Expected date string with format 'd.m.Y'", $prefix);
         }
     }

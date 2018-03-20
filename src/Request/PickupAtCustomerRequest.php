@@ -17,7 +17,7 @@ use Ekyna\Component\Dpd\Model;
  * @property Model\PickupData     $data                  Données optionnelles
  * @property array|Model\Parcel[] $shipments
  */
-class PickupAtCustomerRequest extends Model\AbstractModel
+class PickupAtCustomerRequest extends Model\AbstractInput implements RequestInterface
 {
     /**
      * @inheritdoc

@@ -27,7 +27,7 @@ use Ekyna\Component\Dpd\Model;
  * @property string        $reference2            Référence interne 2
  * @property string        $reference3            Référence interne 3
  */
-class CollectionRequestRequest extends Model\AbstractModel
+class CollectionRequestRequest extends Model\AbstractInput implements RequestInterface
 {
     /**
      * @inheritdoc

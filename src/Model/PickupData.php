@@ -16,7 +16,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property string    $pick_remark Commentaire / enlèvement - ramasse
  * @property bool|null $dayCheckDone
  */
-class PickupData extends AbstractModel
+class PickupData extends AbstractInput
 {
     /**
      * @inheritdoc

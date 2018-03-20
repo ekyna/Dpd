@@ -14,7 +14,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property string $centernumber Code agence
  * @property string $number       N° de compte
  */
-class Customer extends AbstractModel
+class Customer extends AbstractInput
 {
     /**
      * @inheritdoc

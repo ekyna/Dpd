@@ -10,7 +10,7 @@ use Ekyna\Component\Dpd\Definition\Definition;
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-abstract class AbstractModel implements ModelInterface
+abstract class AbstractInput implements InputInterface
 {
     /**
      * @var array
@@ -87,7 +87,7 @@ abstract class AbstractModel implements ModelInterface
                 continue;
             }
 
-            if ($value instanceof ModelInterface) {
+            if ($value instanceof InputInterface) {
                 $data[$name] = $value->toArray();
             } else {
                 $data[$name] = $value;

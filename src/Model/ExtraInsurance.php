@@ -16,7 +16,7 @@ use Ekyna\Component\Dpd\Enum\ETypeInsurance;
  *
  * @see \Ekyna\Component\Dpd\Enum\ETypeInsurance
  */
-class ExtraInsurance extends AbstractModel
+class ExtraInsurance extends AbstractInput
 {
     /**
      * @inheritdoc

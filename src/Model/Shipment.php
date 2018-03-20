@@ -3,8 +3,10 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Model;
 
+use Ekyna\Component\Dpd\Api;
 use Ekyna\Component\Dpd\Definition;
 use Ekyna\Component\Dpd\Enum\EType;
+use Ekyna\Component\Dpd\Exception\RuntimeException;
 
 /**
  * Class Shipment
@@ -17,8 +19,24 @@ use Ekyna\Component\Dpd\Enum\EType;
  * @property int $barcode      Contenu du code à barres DPD
  * @property int $type         Type d’expédition
  */
-class Shipment extends AbstractModel
+class Shipment extends AbstractInput
 {
+    /**
+     * Returns the tracking url.
+     *
+     * @return string
+     *
+     * @throws RuntimeException
+     */
+    public function getTrackingUrl()
+    {
+        if (!isset($this->parcelnumber)) {
+            throw new RuntimeException("Shipment has no parcel number.");
+        }
+
+        return sprintf(Api::TRACKING_URL, $this->parcelnumber);
+    }
+
     /**
      * @inheritdoc
      */

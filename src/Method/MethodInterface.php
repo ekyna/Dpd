@@ -1,23 +1,30 @@
 <?php
+declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Method;
 
 use Ekyna\Component\Dpd\Request\RequestInterface;
-use Ekyna\Component\Dpd\Response\ResponseInterface;
 
 /**
  * Interface MethodInterface
- * @package Ekyna\Component\Dpd\Method
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 interface MethodInterface
 {
     /**
-     * Executes the method.
+     * Executes the request.
+     *
+     * @param RequestInterface $request
+     */
+    public function execute(RequestInterface $request);
+
+    /**
+     * Asserts that the request is supported.
      *
      * @param RequestInterface $request
      *
-     * @return ResponseInterface
+     * @throws \Ekyna\Component\Dpd\Exception\ExceptionInterface
      */
-    public function execute(RequestInterface $request);
+    public function supports(RequestInterface $request);
 }

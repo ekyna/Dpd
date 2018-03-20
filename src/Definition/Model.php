@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\Dpd\Model\ModelInterface;
+use Ekyna\Component\Dpd\Model\InputInterface;
 use Ekyna\Component\Dpd\Exception;
 
 /**
@@ -30,8 +30,8 @@ class Model extends AbstractField
     {
         parent::__construct($name, $required);
 
-        if (!is_subclass_of($class, ModelInterface::class)) {
-            throw new Exception\RuntimeException("Class $class must implements " . ModelInterface::class);
+        if (!is_subclass_of($class, InputInterface::class)) {
+            throw new Exception\RuntimeException("Class $class must implements " . InputInterface::class);
         }
 
         $this->class = $class;
@@ -54,7 +54,7 @@ class Model extends AbstractField
             $this->throwValidationException("Expected instance of " . $this->class, $prefix);
         }
 
-        /** @var ModelInterface $value  */
+        /** @var InputInterface $value  */
         $value->validate($prefix);
     }
 }

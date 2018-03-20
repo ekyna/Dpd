@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\Definition;
  *
  * @property Parcel $original_parcel
  */
-class ReverseInverseReturn extends AbstractModel
+class ReverseInverseReturn extends AbstractInput
 {
     /**
      * @inheritdoc

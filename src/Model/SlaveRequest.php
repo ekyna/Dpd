@@ -16,15 +16,13 @@ use Ekyna\Component\Dpd\Definition;
  * @property string $reference3      Référence interne 3
  * @property string $services
  */
-class SlaveRequest extends AbstractModel
+class SlaveRequest extends AbstractInput
 {
     /**
      * @inheritdoc
      */
     protected function buildDefinition(Definition\Definition $definition): void
     {
-        parent::buildDefinition($definition);
-
         $definition
             ->addField(new Definition\Decimal('weigth', false, 6, 2))
             ->addField(new Definition\AlphaNumeric('referencenumber', false, 35))

@@ -13,7 +13,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property ExtraInsurance           $extraInsurance
  * @property ContactCollectionRequest $contact
  */
-class CollectionRequestService extends AbstractModel
+class CollectionRequestService extends AbstractInput
 {
     /**
      * @inheritdoc

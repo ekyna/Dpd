@@ -4,11 +4,11 @@ declare (strict_types=1);
 namespace Ekyna\Component\Dpd\Model;
 
 /**
- * Interface ModelInterface
+ * Interface InputInterface
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-interface ModelInterface
+interface InputInterface
 {
     /**
      * Validates the data.
@@ -20,7 +20,7 @@ interface ModelInterface
     public function validate(string $prefix = null): void;
 
     /**
-     * Returns the data.
+     * Returns the data as array.
      *
      * @return array
      */

@@ -18,7 +18,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property AutoConsolidation    $autoConsolidation
  * @property Bic3                 $bic3
  */
-class StdServices extends AbstractModel
+class StdServices extends AbstractInput
 {
     /**
      * @inheritdoc

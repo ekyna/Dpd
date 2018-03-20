@@ -12,8 +12,10 @@ use Ekyna\Component\Dpd\Definition;
  *
  * @property string $userid
  * @property string $password
+ *
+ * @TODO remove as not used
  */
-class UserCredentials extends AbstractModel
+class UserCredentials extends AbstractInput
 {
     /**
      * @inheritdoc

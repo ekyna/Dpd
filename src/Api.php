@@ -3,7 +3,8 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd;
 
-use Ekyna\Component\Dpd\Model;
+use Ekyna\Component\Dpd\Exception\RuntimeException;
+use Ekyna\Component\Dpd\Method\MethodInterface;
 use Ekyna\Component\Dpd\Request;
 use Ekyna\Component\Dpd\Response;
 
@@ -11,9 +12,17 @@ use Ekyna\Component\Dpd\Response;
  * Class Api
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @method Response\CreateShipmentResponse CreateShipment(Request\StdShipmentRequest $request)
+ * @method Response\CreateShipmentWithLabelsResponse CreateShipmentWithLabels(Request\StdShipmentLabelRequest $request)
+ * @method Response\CreateMultiShipmentResponse CreateMultiShipment(Request\MultiShipmentRequest $request)
+ * @method Response\GetShipmentResponse GetShipment(Request\ShipmentRequest $request)
+ * @method Response\GetLabelResponse GetLabel(Request\ReceiveLabelRequest $request)
  */
 class Api
 {
+    const TRACKING_URL = 'http://www.dpd.fr/traces_%s';
+
     /**
      * @var Client
      */
@@ -31,36 +40,38 @@ class Api
     }
 
     /**
-     * Cette méthode génère une nouvelle expédition.
-     * Avec le service Retour en Relais Préparé et Demandé, 2 n° de colis seront produits (flux Aller et Retour).
+     * @param string $method
      *
-     * @param Request\StdShipmentRequest $request
+     * @param array  $parameters
      *
-     * @return Model\Shipment[]
+     * @return mixed
      */
-    public function createShipment(Request\StdShipmentRequest $request): array
+    public function __call($method, $parameters)
     {
-        $request->validate();
+        if (!class_exists($class = $this->getClassNameFromMethod($method))) {
+            throw new RuntimeException("Method {$method} does not exist");
+        }
 
-        $data = new \SoapParam(['request' => $request], 'CreateShipment');
+        /** @var MethodInterface $instance */
+        $instance = new $class($this->client);
 
-        return $this->client->call('CreateShipment', [$data]);
+        /* TODO if ($instance instanceof Cacheable) {
+            return $instance->cache($parameters);
+        }*/
+
+        return $instance->execute(current($parameters));
     }
 
     /**
-     * Cette méthode génère une nouvelle expédition et retourne le/les étiquette(s) correspondante(s).
+     * Get class name that handles execution of this method
      *
-     * @param Request\StdShipmentLabelRequest $request
+     * @param string $method
      *
-     * @return Response\CreateShipmentWithLabelsResponse
+     * @return string
      */
-    public function createShipmentWithLabel(Request\StdShipmentLabelRequest $request)
+    private function getClassNameFromMethod($method)
     {
-        $request->validate();
-
-        $data = new \SoapParam(['request' => $request], 'CreateShipmentWithLabels');
-
-        return $this->client->call('CreateShipmentWithLabels', [$data]);
+        return 'Ekyna\\Component\\Dpd\\Method\\' . ucwords($method);
     }
 
     public function isAlive()
@@ -71,24 +82,5 @@ class Api
     public function getInfo()
     {
         return $this->client->call('getInfo', []);
-    }
-
-    /**
-     * Make it possible to debug the last request.
-     *
-     * @return array
-     */
-    public function debugLastSoapRequest(): array
-    {
-        return [
-            'request'  => [
-                'headers' => $this->client->__getLastRequestHeaders(),
-                'body'    => $this->client->__getLastRequest(),
-            ],
-            'response' => [
-                'headers' => $this->client->__getLastResponseHeaders(),
-                'body'    => $this->client->__getLastResponse(),
-            ],
-        ];
     }
 }

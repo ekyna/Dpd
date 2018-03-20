@@ -15,7 +15,7 @@ use Ekyna\Component\Dpd\Definition;
  * @property string $city          Ville
  * @property string $street        Rue
  */
-class AddressMini extends AbstractModel
+class AddressMini extends AbstractInput
 {
     /**
      * @inheritdoc

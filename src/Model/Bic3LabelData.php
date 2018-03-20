@@ -10,8 +10,10 @@ use Ekyna\Component\Dpd\Enum\EBic3Mode;
  * Class Bic3LabelData
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @property string $mode
  */
-class Bic3LabelData extends AbstractModel
+class Bic3LabelData extends AbstractInput
 {
     /**
      * @inheritdoc

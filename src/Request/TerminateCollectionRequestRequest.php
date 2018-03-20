@@ -11,7 +11,7 @@ use Ekyna\Component\Dpd\Model;
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-class TerminateCollectionRequestRequest extends Model\AbstractModel
+class TerminateCollectionRequestRequest extends Model\AbstractInput implements RequestInterface
 {
     /**
      * @inheritdoc

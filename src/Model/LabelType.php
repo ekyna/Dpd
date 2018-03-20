@@ -10,13 +10,19 @@ use Ekyna\Component\Dpd\Enum\ELabelType;
  * Class LabelType
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
- *
- * @property string $type PNG / PDF / PDF_A6
- *
- * @see ELabelType
  */
-class LabelType extends AbstractModel
+class LabelType extends AbstractInput
 {
+    /**
+     * PNG / PDF / PDF_A6
+     *
+     * @var string
+     *
+     * @see ELabelType
+     */
+    public $type = ELabelType::PNG;
+
+
     /**
      * @inheritdoc
      */
