@@ -1,9 +1,20 @@
 <?php
 
 // TODO Fill with your credentials
-
-$userId = '';
-$password = '';
+$apiConfig = [
+    'eprint' => [
+        'login'    => null,
+        'password' => null,
+        'cache'    => true,
+        'debug'    => false,
+    ],
+    'pudo'   => [
+        'carrier' => null,
+        'key'     => null,
+        'cache'   => true,
+        'debug'   => false,
+    ],
+];
 
 $classicNumber = '';
 $predictNumber = '';

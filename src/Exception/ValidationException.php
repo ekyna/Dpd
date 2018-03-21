@@ -5,7 +5,7 @@ namespace Ekyna\Component\Dpd\Exception;
 
 /**
  * Class ValidationException
- * @package Ekyna\Component\Dpd\Exception
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class ValidationException extends \InvalidArgumentException implements ExceptionInterface

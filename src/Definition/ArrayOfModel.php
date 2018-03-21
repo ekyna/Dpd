@@ -4,7 +4,7 @@ declare (strict_types=1);
 namespace Ekyna\Component\Dpd\Definition;
 
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\Model\InputInterface;
+use Ekyna\Component\Dpd\InputInterface;
 
 /**
  * Class ArrayOfModel

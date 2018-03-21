@@ -2,30 +2,28 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ekyna\Component\Dpd;
+use Ekyna\Component\Dpd\Api;
+use Ekyna\Component\Dpd\Exception;
+use Ekyna\Component\Dpd\EPrint;
 
 /* ---------------- Client and API ---------------- */
 
 require __DIR__ . '/config.php';
 
-// SOAP Client
-$client = new Dpd\Client($userId, $password, $cache, $debug);
-
-// API helper
-$api = new Dpd\Api($client);
+$api = new Api($apiConfig);
 
 /* ---------------- Create request ---------------- */
 
 // Shipment request
-$request = new Dpd\Request\ShipmentRequest();
+$request = new EPrint\Request\ShipmentRequest();
 
-$request->parcel = new Dpd\Model\Parcel();
+$request->parcel = new EPrint\Model\Parcel();
 $request->parcel->parcelnumber = '801011158';
-$request->parcel->countrycode = '250'; // TODO is that same as Customer.countrycode ?
-$request->parcel->centernumber = '35'; // TODO is that same as Customer.centernumber ?
+$request->parcel->countrycode = $countryCode;
+$request->parcel->centernumber = $centerNumber;
 
-$request->customer = new Dpd\Model\Customer();
-$request->customer->number = $classicNumber; // or $predictNumber
+$request->customer = new EPrint\Model\Customer();
+$request->customer->number = $usePredict ? $predictNumber : $classicNumber;
 $request->customer->countrycode = $countryCode;
 $request->customer->centernumber = $centerNumber;
 
@@ -33,11 +31,11 @@ $request->customer->centernumber = $centerNumber;
 
 // Use API helper
 try {
-    /** @var Dpd\Response\GetShipmentResponse $response */
+    /** @var \Ekyna\Component\Dpd\EPrint\Response\GetShipmentResponse $response */
     $response = $api->GetShipment($request);
-} catch (Dpd\Exception\ClientException $e) {
+} catch (Exception\ExceptionInterface $e) {
     echo "Error: " . $e->getMessage();
-    if ($debug) {
+    if ($debug && $e instanceof Exception\ClientException) {
         echo "\nRequest:\n" . $e->request;
         echo "\nResponse:\n" . $e->response;
     }
@@ -46,7 +44,7 @@ try {
 echo get_class($response) . "\n";
 
 // Get result
-/** @var Dpd\Model\ShipmentDataExtended $result */
+/** @var \Ekyna\Component\Dpd\EPrint\Model\ShipmentDataExtended $result */
 $result = $response->GetShipmentResult;
 echo get_class($result) . "\n";
 

@@ -3,86 +3,149 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd;
 
+use Ekyna\Component\Dpd\EPrint\Client as EPrintClient;
+use Ekyna\Component\Dpd\EPrint\Request as EReq;
+use Ekyna\Component\Dpd\EPrint\Response as ERes;
 use Ekyna\Component\Dpd\Exception\RuntimeException;
-use Ekyna\Component\Dpd\Method\MethodInterface;
-use Ekyna\Component\Dpd\Request;
-use Ekyna\Component\Dpd\Response;
+use Ekyna\Component\Dpd\Pudo\Client as PudoClient;
+use Ekyna\Component\Dpd\Pudo\Request as PReq;
+use Ekyna\Component\Dpd\Pudo\Response as PRes;
 
 /**
  * Class Api
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
- * @method Response\CreateShipmentResponse CreateShipment(Request\StdShipmentRequest $request)
- * @method Response\CreateShipmentWithLabelsResponse CreateShipmentWithLabels(Request\StdShipmentLabelRequest $request)
- * @method Response\CreateMultiShipmentResponse CreateMultiShipment(Request\MultiShipmentRequest $request)
- * @method Response\CreateReverseInverseShipmentResponse CreateReverseInverseShipment(Request\ReverseShipmentRequest $request)
- * @method Response\CreateReverseInverseShipmentWithLabelsResponse CreateReverseInverseShipmentWithLabels(Request\ReverseShipmentLabelRequest $request)
- * @method Response\GetShipmentResponse GetShipment(Request\ShipmentRequest $request)
- * @method Response\GetLabelResponse GetLabel(Request\ReceiveLabelRequest $request)
+ * @method ERes\CreateShipmentResponse CreateShipment(EReq\StdShipmentRequest $request)
+ * @method ERes\CreateShipmentWithLabelsResponse CreateShipmentWithLabels(EReq\StdShipmentLabelRequest $request)
+ * @method ERes\CreateMultiShipmentResponse CreateMultiShipment(EReq\MultiShipmentRequest $request)
+ * @method ERes\CreateReverseInverseShipmentResponse CreateReverseInverseShipment(EReq\ReverseShipmentRequest $request)
+ * @method ERes\CreateReverseInverseShipmentWithLabelsResponse CreateReverseInverseShipmentWithLabels(EReq\ReverseShipmentLabelRequest $request)
+ * @method ERes\GetShipmentResponse GetShipment(EReq\ShipmentRequest $request)
+ * @method ERes\GetLabelResponse GetLabel(EReq\ReceiveLabelRequest $request)
+ *
+ * @method PRes\GetPudoListResponse GetPudoList(PReq\GetPudoListRequest $request)
+ * @method PRes\GetPudoDetailsResponse GetPudoDetails(PReq\GetPudoDetailsRequest $request)
  */
 class Api
 {
     const TRACKING_URL = 'http://www.dpd.fr/traces_%s';
 
     /**
-     * @var Client
+     * @var array
      */
-    private $client;
+    private $config;
+
+    /**
+     * @var EPrintClient
+     */
+    private $ePrintClient;
+
+    /**
+     * @var PudoClient
+     */
+    private $pudoClient;
 
 
     /**
      * Constructor.
      *
-     * @param Client $client
+     * @param array $config
      */
-    public function __construct(Client $client)
+    public function __construct(array $config)
     {
-        $this->client = $client;
+        $this->config = array_replace_recursive([
+            'eprint' => [
+                'login'    => null,
+                'password' => null,
+            ],
+            'pudo'   => [
+                'carrier' => 'EXA',
+                'key'     => 'deecd7bc81b71fcc0e292b53e826c48f',
+            ],
+            'cache'  => true,
+            'debug'  => false,
+        ], $config);
     }
 
     /**
-     * @param string $method
+     * Calls the method with parameters.
      *
-     * @param array  $parameters
+     * @param string $name The method name
+     * @param array  $parameters The parameters
      *
      * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call($name, $parameters)
     {
-        if (!class_exists($class = $this->getClassNameFromMethod($method))) {
-            throw new RuntimeException("Method {$method} does not exist");
-        }
-
-        /** @var MethodInterface $instance */
-        $instance = new $class($this->client);
+        $method = $this->createMethod($name);
 
         /* TODO if ($instance instanceof Cacheable) {
             return $instance->cache($parameters);
         }*/
 
-        return $instance->execute(current($parameters));
+        return $method->execute(current($parameters));
     }
 
     /**
-     * Get class name that handles execution of this method
+     * Creates the method.
      *
-     * @param string $method
+     * @param string $name
      *
-     * @return string
+     * @return MethodInterface
      */
-    private function getClassNameFromMethod($method)
+    private function createMethod(string $name): MethodInterface
     {
-        return 'Ekyna\\Component\\Dpd\\Method\\' . ucwords($method);
+        $class = 'Ekyna\\Component\\Dpd\\EPrint\\Method\\' . ucwords($name);
+        if (class_exists($class)) {
+            /** @var MethodInterface $instance */
+            return new $class($this->getEPrintClient());
+        }
+
+        $class = 'Ekyna\\Component\\Dpd\\Pudo\\Method\\' . ucwords($name);
+        if (class_exists($class)) {
+            /** @var MethodInterface $instance */
+            return new $class($this->getPudoClient());
+        }
+
+        throw new RuntimeException("Method {$name} does not exist");
     }
 
-    public function isAlive()
+    /**
+     * Returns the ePrint client.
+     *
+     * @return EPrintClient
+     */
+    private function getEPrintClient(): EPrintClient
     {
-        return $this->client->__soapCall('isAlive', []);
+        if (null !== $this->ePrintClient) {
+            return $this->ePrintClient;
+        }
+
+        return $this->ePrintClient = new EPrintClient(
+            $this->config['eprint']['login'],
+            $this->config['eprint']['password'],
+            $this->config['cache'],
+            $this->config['debug']
+        );
     }
 
-    public function getInfo()
+    /**
+     * Returns the Pudo client.
+     *
+     * @return PudoClient
+     */
+    private function getPudoClient(): PudoClient
     {
-        return $this->client->call('getInfo', []);
+        if (null !== $this->pudoClient) {
+            return $this->pudoClient;
+        }
+
+        return $this->pudoClient = new PudoClient(
+            $this->config['pudo']['carrier'],
+            $this->config['pudo']['key'],
+            $this->config['cache'],
+            $this->config['debug']
+        );
     }
 }

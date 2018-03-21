@@ -5,7 +5,7 @@ namespace Ekyna\Component\Dpd\Exception;
 
 /**
  * Interface DpdExceptionInterface
- * @package Ekyna\Component\Dpd\Exception
+ * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 interface ExceptionInterface

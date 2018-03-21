@@ -3,7 +3,7 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\Dpd\Enum\EnumInterface;
+use Ekyna\Component\Dpd\EPrint\Enum\EnumInterface;
 use Ekyna\Component\Dpd\Exception;
 
 /**

@@ -2,22 +2,20 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ekyna\Component\Dpd;
+use Ekyna\Component\Dpd\Api;
+use Ekyna\Component\Dpd\Exception;
+use Ekyna\Component\Dpd\EPrint;
 
 /* ---------------- Client and API ---------------- */
 
 require __DIR__ . '/config.php';
 
-// SOAP Client
-$client = new Dpd\Client($userId, $password, $cache, $debug);
-
-// API helper
-$api = new Dpd\Api($client);
+$api = new Api($apiConfig);
 
 /* ---------------- Create request ---------------- */
 
 // Shipment request
-$request = new Dpd\Request\ReceiveLabelRequest();
+$request = new EPrint\Request\ReceiveLabelRequest();
 
 $request->parcelnumber = '801011158';
 $request->countrycode = '250';
@@ -27,11 +25,11 @@ $request->centernumber = '35';
 
 // Use API helper
 try {
-    /** @var Dpd\Response\GetLabelResponse $response */
+    /** @var \Ekyna\Component\Dpd\EPrint\Response\GetLabelResponse $response */
     $response = $api->GetLabel($request);
-} catch (Dpd\Exception\ClientException $e) {
+} catch (Exception\ExceptionInterface $e) {
     echo "Error: " . $e->getMessage();
-    if ($debug) {
+    if ($debug && $e instanceof Exception\ClientException) {
         echo "\nRequest:\n" . $e->request;
         echo "\nResponse:\n" . $e->response;
     }
@@ -40,7 +38,7 @@ try {
 echo get_class($response) . "\n";
 
 // Get result
-/** @var Dpd\Model\LabelResponse $result */
+/** @var \Ekyna\Component\Dpd\EPrint\Model\LabelResponse $result */
 $result = $response->GetLabelResult;
 echo get_class($result) . "\n";
 
@@ -52,7 +50,7 @@ Parcel number: {$result->parcelnumber}
 EOF;
 
 
-/** @var Dpd\Model\Label $label */
+/** @var \Ekyna\Component\Dpd\EPrint\Model\Label $label */
 $idx = 0;
 foreach ($result->labels as $label) {
     echo "Label#$idx: " . strlen($label->label) . "\n";

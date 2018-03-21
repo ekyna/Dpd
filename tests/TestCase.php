@@ -3,7 +3,7 @@
 namespace Ekyna\Component\Dpd;
 
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\Model\AbstractInput;
+use Ekyna\Component\Dpd\AbstractInput;
 
 /**
  * Class TestCase
