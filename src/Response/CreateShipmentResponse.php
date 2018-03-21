@@ -3,7 +3,6 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Response;
 
-use Ekyna\Component\Dpd\Model\ArrayOfShipment;
 use Ekyna\Component\Dpd\Model\OutputInterface;
 
 /**
@@ -14,7 +13,7 @@ use Ekyna\Component\Dpd\Model\OutputInterface;
 class CreateShipmentResponse implements ResponseInterface, OutputInterface
 {
     /**
-     * @var ArrayOfShipment
+     * @var \Ekyna\Component\Dpd\Model\ArrayOfShipment
      */
     public $CreateShipmentResult;
 

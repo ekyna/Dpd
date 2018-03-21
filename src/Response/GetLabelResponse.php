@@ -3,17 +3,17 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Response;
 
-use Ekyna\Component\Dpd\Model;
+use Ekyna\Component\Dpd\Model\OutputInterface;
 
 /**
  * Class GetLabelResponse
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-class GetLabelResponse implements ResponseInterface, Model\OutputInterface
+class GetLabelResponse implements ResponseInterface, OutputInterface
 {
     /**
-     * @var Model\LabelResponse
+     * @var \Ekyna\Component\Dpd\Model\LabelResponse
      */
     public $GetLabelResult;
 

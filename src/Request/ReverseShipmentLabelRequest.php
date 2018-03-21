@@ -29,6 +29,6 @@ class ReverseShipmentLabelRequest extends ReverseShipmentRequest
             ->addField(new Definition\AlphaNumeric('receiver_contact_name', false, 35))// TODO length missing in doc
             ->addField(new Definition\AlphaNumeric('customLabelText', false, 400))
             ->addField(new Definition\Model('labelType', false, LabelType::class))
-            ->addField(new Definition\Boolean('refasbarcode', true));
+            ->addField(new Definition\Boolean('refasbarcode', false));
     }
 }

@@ -11,6 +11,11 @@ use Ekyna\Component\Dpd\Model\ShipmentRequestBase;
  * Class CreateReverseInverseShipment
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @property string                 $weight          Poids
+ * @property string                 $expire_offset   Délai de validité (jours)
+ * @property string                 $referencenumber Référence interne 1
+ * @property ReverseInverseServices $services        Services
  */
 class ReverseShipmentRequest extends ShipmentRequestBase
 {

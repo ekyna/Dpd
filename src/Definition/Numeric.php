@@ -47,7 +47,7 @@ class Numeric extends AbstractField
             $this->throwValidationException("Unexpected integer value", $prefix);
         }
 
-        if (strlen($value) > $this->size) {
+        if (strlen((string) $value) > $this->size) {
             $this->throwValidationException("Expected integer with max size $this->size", $prefix);
         }
     }

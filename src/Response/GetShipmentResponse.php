@@ -2,8 +2,6 @@
 
 namespace Ekyna\Component\Dpd\Response;
 
-use Ekyna\Component\Dpd\Model;
-
 /**
  * Class GetShipmentResponse
  * @package Ekyna\Component\Dpd
@@ -12,7 +10,7 @@ use Ekyna\Component\Dpd\Model;
 class GetShipmentResponse implements ResponseInterface
 {
     /**
-     * @var Model\ShipmentDataExtended
+     * @var \Ekyna\Component\Dpd\Model\ShipmentDataExtended
      */
     public $GetShipmentResult;
 }

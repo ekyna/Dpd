@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\Response\ResponseInterface;
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-class Client extends \Soapclient
+class Client extends \Soapclient implements ClientInterface
 {
     const NAMESPACE = 'http://www.cargonet.software';
     const WSDL      = 'https://e-station.cargonet.software/dpd-eprintwebservice/eprintwebservice.asmx?WSDL';
@@ -58,35 +58,32 @@ class Client extends \Soapclient
             'soap_version' => SOAP_1_2,
             'compression'  => true,
             'classmap'     => [
-                'CreateShipmentWithLabelsResponse' => Response\CreateShipmentWithLabelsResponse::class,
-                'ShipmentsWithLabels'              => Model\ShipmentsWithLabels::class,
-                'ArrayOfShipment'                  => Model\ArrayOfShipment::class,
-                'ArrayOfLabel'                     => Model\ArrayOfLabel::class,
-                'Shipment'                         => Model\Shipment::class,
-                'Label'                            => Model\Label::class,
-                'Address'                          => Model\Address::class,
-                'Contact'                          => Model\Contact::class,
-                'CreateMultiShipmentResponse'      => Response\CreateMultiShipmentResponse::class,
-                'MultiShipment'                    => Model\MultiShipment::class,
-                'GetShipmentResponse'              => Response\GetShipmentResponse::class,
-                'ShipmentDataExtended'             => Model\ShipmentDataExtended::class,
-                'GetLabelResponse'                 => Response\GetLabelResponse::class,
-                'LabelResponse'                    => Model\LabelResponse::class,
+                'Address'                                        => Model\Address::class,
+                'ArrayOfLabel'                                   => Model\ArrayOfLabel::class,
+                'ArrayOfShipment'                                => Model\ArrayOfShipment::class,
+                'Contact'                                        => Model\Contact::class,
+                'Label'                                          => Model\Label::class,
+                'LabelResponse'                                  => Model\LabelResponse::class,
+                'MultiShipment'                                  => Model\MultiShipment::class,
+                'Shipment'                                       => Model\Shipment::class,
+                'ShipmentDataExtended'                           => Model\ShipmentDataExtended::class,
+                'ShipmentWithLabels'                             => Model\ShipmentWithLabels::class,
+                'ShipmentsWithLabels'                            => Model\ShipmentsWithLabels::class,
+                'CreateShipmentResponse'                         => Response\CreateShipmentResponse::class,
+                'CreateMultiShipmentResponse'                    => Response\CreateMultiShipmentResponse::class,
+                'CreateShipmentWithLabelsResponse'               => Response\CreateShipmentWithLabelsResponse::class,
+                'CreateReverseInverseShipmentResponse'           => Response\CreateReverseInverseShipmentResponse::class,
+                'CreateReverseInverseShipmentWithLabelsResponse' => Response\CreateReverseInverseShipmentWithLabelsResponse::class,
+                'GetLabelResponse'                               => Response\GetLabelResponse::class,
+                'GetShipmentResponse'                            => Response\GetShipmentResponse::class,
             ],
         ]);
     }
 
     /**
-     * Call the web service method.
-     *
-     * @param string $method
-     * @param array  $arguments
-     *
-     * @return ResponseInterface
-     *
-     * @throws ClientException
+     * @inheritdoc
      */
-    public function call(string $method, array $arguments)
+    public function call(string $method, array $arguments): ResponseInterface
     {
         try {
             return $this->__soapCall($method, $arguments, null, $this->getHeader());
@@ -104,7 +101,7 @@ class Client extends \Soapclient
      *
      * @return \SoapHeader
      */
-    protected function getHeader()
+    protected function getHeader(): \SoapHeader
     {
         if ($this->header) {
             return $this->header;

@@ -1,0 +1,17 @@
+<?php
+
+// TODO Fill with your credentials
+
+$userId = '';
+$password = '';
+
+$classicNumber = '';
+$predictNumber = '';
+
+$centerNumber = '';
+$countryCode = '';
+
+$cache = false;
+$debug = true;
+
+$usePredict = false;

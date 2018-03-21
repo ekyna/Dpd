@@ -16,6 +16,8 @@ use Ekyna\Component\Dpd\Response;
  * @method Response\CreateShipmentResponse CreateShipment(Request\StdShipmentRequest $request)
  * @method Response\CreateShipmentWithLabelsResponse CreateShipmentWithLabels(Request\StdShipmentLabelRequest $request)
  * @method Response\CreateMultiShipmentResponse CreateMultiShipment(Request\MultiShipmentRequest $request)
+ * @method Response\CreateReverseInverseShipmentResponse CreateReverseInverseShipment(Request\ReverseShipmentRequest $request)
+ * @method Response\CreateReverseInverseShipmentWithLabelsResponse CreateReverseInverseShipmentWithLabels(Request\ReverseShipmentLabelRequest $request)
  * @method Response\GetShipmentResponse GetShipment(Request\ShipmentRequest $request)
  * @method Response\GetLabelResponse GetLabel(Request\ReceiveLabelRequest $request)
  */
