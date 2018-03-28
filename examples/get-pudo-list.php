@@ -2,7 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ekyna\Component\Dpd\Api;
 use Ekyna\Component\Dpd\Exception;
 use Ekyna\Component\Dpd\Pudo;
 
@@ -10,7 +9,7 @@ use Ekyna\Component\Dpd\Pudo;
 
 require __DIR__ . '/config.php';
 
-$api = new Api($apiConfig);
+$api = new Pudo\Api($pudoConfig);
 
 /* ---------------- Create request ---------------- */
 

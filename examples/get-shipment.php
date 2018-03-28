@@ -2,7 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ekyna\Component\Dpd\Api;
 use Ekyna\Component\Dpd\Exception;
 use Ekyna\Component\Dpd\EPrint;
 
@@ -10,7 +9,7 @@ use Ekyna\Component\Dpd\EPrint;
 
 require __DIR__ . '/config.php';
 
-$api = new Api($apiConfig);
+$api = new EPrint\Api($ePrintConfig);
 
 /* ---------------- Create request ---------------- */
 

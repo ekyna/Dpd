@@ -3,8 +3,8 @@ declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
 
-use Ekyna\Component\Dpd\Api;
 use Ekyna\Component\Dpd\Definition;
+use Ekyna\Component\Dpd\EPrint\Api;
 use Ekyna\Component\Dpd\EPrint\Enum\EType;
 use Ekyna\Component\Dpd\Exception\RuntimeException;
 use Ekyna\Component\Dpd\AbstractInput;

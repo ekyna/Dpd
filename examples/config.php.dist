@@ -1,19 +1,21 @@
 <?php
 
 // TODO Fill with your credentials
-$apiConfig = [
-    'eprint' => [
-        'login'    => null,
-        'password' => null,
-        'cache'    => true,
-        'debug'    => false,
-    ],
-    'pudo'   => [
-        'carrier' => null,
-        'key'     => null,
-        'cache'   => true,
-        'debug'   => false,
-    ],
+$cache = false;
+$debug = true;
+
+$ePrintConfig = [
+    'login'    => '',
+    'password' => '',
+    'cache'    => $cache,
+    'debug'    => $debug,
+];
+
+$pudoConfig = [
+    'carrier' => 'EXA',
+    'key'     => 'deecd7bc81b71fcc0e292b53e826c48f',
+    'cache'   => $cache,
+    'debug'   => $debug,
 ];
 
 $classicNumber = '';
@@ -21,8 +23,5 @@ $predictNumber = '';
 
 $centerNumber = '';
 $countryCode = '';
-
-$cache = false;
-$debug = true;
 
 $usePredict = false;
