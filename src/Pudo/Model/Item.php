@@ -281,7 +281,7 @@ class Item
     /**
      * Returns the openingHours.
      *
-     * @return array
+     * @return OpeningHour[]
      */
     public function getOpeningHours(): array
     {
@@ -305,7 +305,7 @@ class Item
     /**
      * Returns the holidays.
      *
-     * @return array
+     * @return Holiday[]
      */
     public function getHolidays(): array
     {

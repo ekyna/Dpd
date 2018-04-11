@@ -15,11 +15,11 @@ $api = new Pudo\Api($pudoConfig);
 
 $request = new Pudo\Request\GetPudoListRequest();
 
-$request->address = '2 rue des perrets';
-$request->zipCode = '35690';
-$request->city = 'Acigné';
+$request->address = '32 rue de rennes';
+$request->zipCode = '35230';
+$request->city = 'Noyal-Châtillon-sur-Seiche';
 $request->countrycode = 'FR';
-$request->requestID = 'FR';
+$request->requestID = 'test';
 $request->date_from = (new \DateTime('+1 day'))->format('d/m/Y');
 
 

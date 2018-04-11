@@ -10,13 +10,13 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class EType implements EnumInterface
 {
-    const REVERSE           = 'REVERSE';           // Expédition Retour
-    const PROOF             = 'PROOF';             // Preuve de dépôt
-    const EPRINT            = 'EPRINT';            // Etiquette DPD
-    const EPRINTATTACHEMENT = 'EPRINTATTACHEMENT'; // Récapitulatif d’envoi
-    const MASTER            = 'MASTER';
-    const COLLECTIONREQUEST = 'COLLECTIONREQUEST';
-    const BIC3              = 'BIC3';
+    const REVERSE            = 'REVERSE';          // Expédition Retour
+    const PROOF              = 'PROOF';            // Preuve de dépôt
+    const EPRINT             = 'EPRINT';           // Etiquette DPD
+    const EPRINT_ATTACHMENT  = 'EPRINTATTACHMENT'; // Récapitulatif d’envoi
+    const MASTER             = 'MASTER';
+    const COLLECTION_REQUEST = 'COLLECTIONREQUEST';
+    const BIC3               = 'BIC3';
 
 
     /**
@@ -28,9 +28,9 @@ final class EType implements EnumInterface
             static::REVERSE,
             static::PROOF,
             static::EPRINT,
-            static::EPRINTATTACHEMENT,
+            static::EPRINT_ATTACHMENT,
             static::MASTER,
-            static::COLLECTIONREQUEST,
+            static::COLLECTION_REQUEST,
             static::BIC3,
         ];
     }

@@ -34,7 +34,7 @@ if ($usePredict) {
 
 // (Optional) Label type: PNG, PDF, PDF_A6
 $request->labelType = new EPrint\Model\LabelType();
-$request->labelType->type = EPrint\Enum\ELabelType::PNG;
+$request->labelType->type = $type = EPrint\Enum\ELabelType::PDF_A6;
 
 // Receiver address
 $request->receiveraddress = new EPrint\Model\Address();
@@ -111,14 +111,22 @@ foreach ($result->labels as $label) {
     $idx++;
     echo "Label#$idx: " . strlen($label->label) . "\n";
 
-    if (false === $im = imagecreatefromstring($label->label)) {
-        throw new \Exception("Failed to retrieve the shipment label data.");
+    if ($type === EPrint\Enum\ELabelType::PNG) {
+        if (false === $im = imagecreatefromstring($label->label)) {
+            throw new \Exception("Failed to retrieve the shipment label data.");
+        }
+
+        $filename = sprintf('reference_%s.png', $idx);
+
+        if (file_exists($filename)) unlink($filename);
+
+        imagepng($im, $filename);
+        imagedestroy($im);
+    } else {
+        $filename = sprintf('reference_%s.pdf', $idx);
+
+        if (file_exists($filename)) unlink($filename);
+
+        file_put_contents($filename, $label->label);
     }
-
-    $filename = sprintf('%s_%s.png', 'reference', $idx);
-
-    if (file_exists($filename)) unlink($filename);
-
-    imagepng($im, $filename);
-    imagedestroy($im);
 }
