@@ -19,12 +19,13 @@ $request = new EPrint\Request\ReverseShipmentLabelRequest();
 $request->customer_centernumber = $centerNumber;
 $request->customer_countrycode = $countryCode;
 
+$request->services = new EPrint\Model\ReverseInverseServices();
+
 if ($usePredict) {
     // Predict
     $request->customer_number = $predictNumber;
 
     // Predict contact
-    $request->services = new EPrint\Model\ReverseInverseServices();
     $request->services->contact = new EPrint\Model\Contact();
     $request->services->contact->type = EPrint\Enum\ETypeContact::PREDICT;
     $request->services->contact->sms = '0611111111';

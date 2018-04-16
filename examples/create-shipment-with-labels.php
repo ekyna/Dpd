@@ -20,12 +20,13 @@ $request = new EPrint\Request\StdShipmentLabelRequest();
 $request->customer_centernumber = $centerNumber;
 $request->customer_countrycode = $countryCode;
 
+$request->services = new EPrint\Model\StdServices();
+
 if ($usePredict) {
     // Predict
     $request->customer_number = $predictNumber;
 
     // Predict contact
-    $request->services = new EPrint\Model\StdServices();
     $request->services->contact = new EPrint\Model\Contact();
     $request->services->contact->type = EPrint\Enum\ETypeContact::PREDICT;
     $request->services->contact->sms = '0611111111';
@@ -65,6 +66,11 @@ $request->weight = 1.2; // kg
 
 // (Optional) Theoretical shipment date ('d/m/Y' or 'd.m.Y')
 $request->shippingdate = date('d/m/Y');
+
+// (Optional) Insurance
+$request->services->extraInsurance = new EPrint\Model\ExtraInsurance();
+$request->services->extraInsurance->type = EPrint\Enum\ETypeInsurance::BY_SHIPMENTS; // Always use this const
+$request->services->extraInsurance->value = '100'; // 22k euros max
 
 // (Optional) References and comment
 $request->referencenumber = 'my_ref_1';
