@@ -52,13 +52,13 @@ EOF;
 /** @var \Ekyna\Component\Dpd\EPrint\Model\Label $label */
 $idx = 0;
 foreach ($result->labels as $label) {
-    echo "Label#$idx: " . strlen($label->label) . "\n";
+    echo "Label#$idx: " . strlen($label->label) . " (" . $label->type . ")\n";
 
     if (false === $im = imagecreatefromstring($label->label)) {
         throw new \Exception("Failed to retrieve the shipment label data.");
     }
 
-    $filename = sprintf('%s_%s.png', 'reference', $idx);
+    $filename = $labelDir . DIRECTORY_SEPARATOR . sprintf('%s_%s.png', 'reference', $idx);
 
     if (file_exists($filename)) unlink($filename);
 

@@ -57,7 +57,7 @@ $request->shipperaddress->phoneNumber = '0622222222';
 
 // Shipment weight and expire offset
 $request->weight = 1.2; // kg
-$request->expire_offset = 3; // days
+$request->expire_offset = 7; // days (from shippingdate, min 7)
 $request->refasbarcode = true;
 
 // (Optional) Theoretical shipment date ('d/m/Y' or 'd.m.Y')
@@ -97,13 +97,13 @@ echo "Tracking URL: {$shipment->getTrackingUrl()}\n";
 $idx = 0;
 foreach ($result->labels as $label) {
     $idx++;
-    echo "Label#$idx: " . strlen($label->label) . "\n";
+    echo "Label#$idx: " . strlen($label->label) . " (" . $label->type . ")\n";
 
     if (false === $im = imagecreatefromstring($label->label)) {
         throw new \Exception("Failed to retrieve the shipment label data.");
     }
 
-    $filename = sprintf('%s_%s.png', 'reference', $idx);
+    $filename = $labelDir . DIRECTORY_SEPARATOR . sprintf('%s_%s.png', 'reference', $idx);
 
     if (file_exists($filename)) unlink($filename);
 

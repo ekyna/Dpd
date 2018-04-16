@@ -1,6 +1,7 @@
 <?php
 
 // TODO Fill with your credentials
+
 $cache = false;
 $debug = true;
 
@@ -9,6 +10,7 @@ $ePrintConfig = [
     'password' => '',
     'cache'    => $cache,
     'debug'    => $debug,
+    'test'     => true,
 ];
 
 $pudoConfig = [
@@ -25,3 +27,8 @@ $centerNumber = '';
 $countryCode = '';
 
 $usePredict = false;
+
+$labelDir = __DIR__ . DIRECTORY_SEPARATOR . 'tmp';
+if (!is_dir($labelDir)) {
+    mkdir($labelDir);
+}

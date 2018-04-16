@@ -14,24 +14,23 @@ $api = new EPrint\Api($ePrintConfig);
 /* ---------------- Create request ---------------- */
 
 // Shipment request
-$request = new EPrint\Request\ReverseShipmentRequest();
-
+$request = new EPrint\Request\CollectionRequestRequest();
 $request->customer_centernumber = $centerNumber;
 $request->customer_countrycode = $countryCode;
+$request->customer_number = $usePredict ? $predictNumber : $classicNumber; // TODO classic or predict ?
 
-if ($usePredict) {
-    // Predict
-    $request->customer_number = $predictNumber;
+// Collection contact
+$request->services = new EPrint\Model\CollectionRequestServices();
 
-    // Predict contact
-    $request->services = new EPrint\Model\ReverseInverseServices();
-    $request->services->contact = new EPrint\Model\Contact();
-    $request->services->contact->type = EPrint\Enum\ETypeContact::PREDICT;
-    $request->services->contact->sms = '0635225960';
-} else {
-    // Classic
-    $request->customer_number = $classicNumber;
-}
+$request->services->contact = new EPrint\Model\ContactCollectionRequest();
+$request->services->contact->shipper_email = 'test@example.org';
+$request->services->contact->shipper_mobil = '0611111111';
+$request->services->contact->type = EPrint\Enum\ETypeContact::NO; // TODO Which constant ?
+
+//$request->services->extraInsurance = new EPrint\Model\ExtraInsurance(); // TODO How do insurance works ?
+//$request->services->extraInsurance->type = EPrint\Enum\ETypeInsurance::BY_WEIGHT;
+//$request->services->extraInsurance->value = '100';
+
 
 // Receiver address
 $request->receiveraddress = new EPrint\Model\Address();
@@ -42,10 +41,6 @@ $request->receiveraddress->city = 'Dinan';
 $request->receiveraddress->street = '3 rue sainte-clare';
 $request->receiveraddress->phoneNumber = '0633333333';
 
-// (Optional) Receiver address optional info
-$request->receiverinfo = new EPrint\Model\AddressInfo();
-$request->receiverinfo->vinfo1 = 'Complément adresse';
-
 // Shipper address
 $request->shipperaddress = new EPrint\Model\Address();
 $request->shipperaddress->name = 'John Doe';
@@ -55,22 +50,28 @@ $request->shipperaddress->city = 'Rennes';
 $request->shipperaddress->street = '2 rue saint-louis';
 $request->shipperaddress->phoneNumber = '0622222222';
 
-// Shipment weight and expire offset
-$request->weight = 1.2; // kg
-$request->expire_offset = 7; // days (from shippingdate, min 7)
-
-// (Optional) Theoretical shipment date ('d/m/Y' or 'd.m.Y')
-$request->shippingdate = (new \DateTime('+1 day'))->format('d/m/Y');
+// Config
+$request->parcel_count = 1;
+$request->pick_date = (new \DateTime('+1 day'))->format('d/m/Y');
+$request->time_from = '09:00';
+$request->time_to = '12:00';
+//$request->remark = '';
+//$request->pick_remark = '';
+//$request->delivery_remark = '';
+//$request->dayCheckDone = null;
 
 // (Optional) References and comment
-$request->referencenumber = 'return_ref_1';
+$request->referencenumber = 'my_ref_1';
+$request->reference2 = 'my_ref_2';
+$request->reference3 = 'my_ref_3';
+
+
 
 /* ---------------- Get response ---------------- */
 
 // Use API helper
 try {
-    /** @var \Ekyna\Component\Dpd\EPrint\Response\CreateReverseInverseShipmentResponse $response */
-    $response = $api->CreateReverseInverseShipment($request);
+    $response = $api->CreateCollectionRequest($request);
 } catch (Exception\ExceptionInterface $e) {
     echo "Error: " . $e->getMessage();
     if ($debug && $e instanceof Exception\ClientException) {
@@ -81,9 +82,13 @@ try {
 }
 echo get_class($response) . "\n";
 
-// Get result
+// Get shipments
+$idx = 1;
 /** @var \Ekyna\Component\Dpd\EPrint\Model\Shipment $shipment */
-$shipment = $response->CreateReverseInverseShipmentResult;
-echo get_class($shipment) . "\n";
+foreach ($response->CreateCollectionRequestResult as $shipment) {
+    echo get_class($shipment) . "\n";
 
-echo "Tracking URL: {$shipment->getTrackingUrl()}\n";
+    // Tracking url:
+    echo "Shipment#$idx tracking url: {$shipment->getTrackingUrl()}\n";
+}
+

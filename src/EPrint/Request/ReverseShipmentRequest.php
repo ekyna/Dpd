@@ -12,7 +12,7 @@ use Ekyna\Component\Dpd\EPrint\Model;
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property string                       $weight          Poids
- * @property string                       $expire_offset   Délai de validité (jours)
+ * @property string                       $expire_offset   Délai de validité (jours, min 7)
  * @property string                       $referencenumber Référence interne 1
  * @property Model\ReverseInverseServices $services        Services
  */

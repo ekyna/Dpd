@@ -7,14 +7,14 @@ use Ekyna\Component\Dpd\AbstractInput;
 use Ekyna\Component\Dpd\Definition;
 
 /**
- * Class CollectionRequestService
+ * Class CollectionRequestServices
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @property ExtraInsurance           $extraInsurance
  * @property ContactCollectionRequest $contact
  */
-class CollectionRequestService extends AbstractInput
+class CollectionRequestServices extends AbstractInput
 {
     /**
      * @inheritdoc

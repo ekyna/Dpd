@@ -14,7 +14,9 @@ use Ekyna\Component\Dpd\ResponseInterface;
 class Client extends \Soapclient
 {
     const NAMESPACE = 'http://www.cargonet.software';
-    const WSDL      = 'https://e-station.cargonet.software/dpd-eprintwebservice/eprintwebservice.asmx?WSDL';
+
+    const PROD_WSDL = 'https://e-station.cargonet.software/dpd-eprintwebservice/eprintwebservice.asmx?WSDL';
+    const TEST_WSDL = 'http://92.103.148.116/exa-eprintwebservice/eprintwebservice.asmx?WSDL';
 
     /**
      * @var string
@@ -44,14 +46,20 @@ class Client extends \Soapclient
      * @param string $password
      * @param bool   $cache
      * @param bool   $debug
+     * @param bool   $test
      */
-    public function __construct(string $login, string $password, bool $cache = false, bool $debug = false)
-    {
+    public function __construct(
+        string $login,
+        string $password,
+        bool $cache = false,
+        bool $debug = false,
+        bool $test = false
+    ) {
         $this->login = $login;
         $this->password = $password;
         $this->debug = $debug;
 
-        parent::__construct(static::WSDL, [
+        parent::__construct($test ? static::TEST_WSDL : static::PROD_WSDL, [
             'cache_wsdl'   => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
             'trace'        => $debug ? 1 : 0,
             'soap_version' => SOAP_1_2,
@@ -73,6 +81,7 @@ class Client extends \Soapclient
                 'CreateShipmentWithLabelsResponse'               => Response\CreateShipmentWithLabelsResponse::class,
                 'CreateReverseInverseShipmentResponse'           => Response\CreateReverseInverseShipmentResponse::class,
                 'CreateReverseInverseShipmentWithLabelsResponse' => Response\CreateReverseInverseShipmentWithLabelsResponse::class,
+                'CreateCollectionRequestResponse'                => Response\CreateCollectionRequestResponse::class,
                 'GetLabelResponse'                               => Response\GetLabelResponse::class,
                 'GetShipmentResponse'                            => Response\GetShipmentResponse::class,
             ],

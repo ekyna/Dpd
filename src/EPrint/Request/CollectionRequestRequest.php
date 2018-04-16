@@ -13,21 +13,23 @@ use Ekyna\Component\Dpd\RequestInterface;
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
- * @property Model\Address $receiveraddress       Adresse destinataire
- * @property Model\Address $shipperaddress        Adresse expéditeur
- * @property string        $customer_countrycode  Code pays 250 = France
- * @property string        $customer_centernumber Code agence
- * @property string        $customer_number       N° de compte
- * @property string        $parcel_count          Nombre de colis
- * @property string        $pick_date             Date d’enlèvement jj.mm.aaaa
- * @property string        $time_from             Optionnel (par défaut : 08:00)
- * @property string        $time_to               Optionnel (par défaut : 18:00)
- * @property string        $remark                Commentaire
- * @property string        $pick_remark           Instruction d’enlèvement
- * @property string        $delivery_remark       Instruction de livraison
- * @property string        $referencenumber       Référence interne 1
- * @property string        $reference2            Référence interne 2
- * @property string        $reference3            Référence interne 3
+ * @property Model\Address                   $receiveraddress       Adresse destinataire
+ * @property Model\Address                   $shipperaddress        Adresse expéditeur
+ * @property Model\CollectionRequestServices $services              Services
+ * @property string                          $customer_countrycode  Code pays 250 = France
+ * @property string                          $customer_centernumber Code agence
+ * @property string                          $customer_number       N° de compte
+ * @property string                          $parcel_count          Nombre de colis
+ * @property string                          $pick_date             Date d’enlèvement jj.mm.aaaa
+ * @property string                          $time_from             Optionnel (par défaut : 08:00)
+ * @property string                          $time_to               Optionnel (par défaut : 18:00)
+ * @property string                          $remark                Commentaire
+ * @property string                          $pick_remark           Instruction d’enlèvement
+ * @property string                          $delivery_remark       Instruction de livraison
+ * @property string                          $referencenumber       Référence interne 1
+ * @property string                          $reference2            Référence interne 2
+ * @property string                          $reference3            Référence interne 3
+ * @property bool                            $dayCheckDone
  */
 class CollectionRequestRequest extends AbstractInput implements RequestInterface
 {
@@ -42,7 +44,7 @@ class CollectionRequestRequest extends AbstractInput implements RequestInterface
             ->addField(new Definition\Numeric('customer_number', true, 6))
             ->addField(new Definition\Model('receiveraddress', true, Model\Address::class))// optional in WSDL / required in doc
             ->addField(new Definition\Model('shipperaddress', true, Model\Address::class))// optional in WSDL / required in doc
-            ->addField(new Definition\Model('services', true, Model\CollectionRequestService::class))
+            ->addField(new Definition\Model('services', true, Model\CollectionRequestServices::class))
             ->addField(new Definition\Numeric('parcel_count', true, 2))
             ->addField(new Definition\Date('pick_date', false))
             ->addField(new Definition\Time('time_from', false))

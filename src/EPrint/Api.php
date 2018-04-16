@@ -16,6 +16,7 @@ use Ekyna\Component\Dpd\MethodInterface;
  * @method Response\CreateMultiShipmentResponse CreateMultiShipment(Request\MultiShipmentRequest $request)
  * @method Response\CreateReverseInverseShipmentResponse CreateReverseInverseShipment(Request\ReverseShipmentRequest $request)
  * @method Response\CreateReverseInverseShipmentWithLabelsResponse CreateReverseInverseShipmentWithLabels(Request\ReverseShipmentLabelRequest $request)
+ * @method Response\CreateCollectionRequestResponse CreateCollectionRequest(Request\CollectionRequestRequest $request)
  * @method Response\GetShipmentResponse GetShipment(Request\ShipmentRequest $request)
  * @method Response\GetLabelResponse GetLabel(Request\ReceiveLabelRequest $request)
  */
@@ -44,8 +45,9 @@ class Api
         $this->config = array_replace_recursive([
             'login'    => null,
             'password' => null,
-            'cache'  => true,
-            'debug'  => false,
+            'cache'    => true,
+            'debug'    => false,
+            'test'     => false,
         ], $config);
     }
 
@@ -101,7 +103,8 @@ class Api
             $this->config['login'],
             $this->config['password'],
             $this->config['cache'],
-            $this->config['debug']
+            $this->config['debug'],
+            $this->config['test']
         );
     }
 }

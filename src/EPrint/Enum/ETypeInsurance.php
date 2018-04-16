@@ -11,6 +11,7 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
 final class ETypeInsurance implements EnumInterface
 {
     const BY_SHIPMENTS = 'byShipments'; // Au colis
+    const BY_WEIGHT    = 'byWeight';    // Au poids
 
 
     /**
@@ -20,6 +21,7 @@ final class ETypeInsurance implements EnumInterface
     {
         return [
             static::BY_SHIPMENTS,
+            static::BY_WEIGHT,
         ];
     }
 

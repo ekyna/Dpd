@@ -11,6 +11,8 @@ require __DIR__ . '/config.php';
 
 $api = new EPrint\Api($ePrintConfig);
 
+$relayPoint = "P50124";
+
 /* ---------------- Create request ---------------- */
 
 // Shipment request
@@ -70,6 +72,13 @@ $request->reference2 = 'my_ref_2';
 $request->reference3 = 'my_ref_3';
 $request->customLabelText = 'Shipping comment...';
 
+// Relay point
+if (!$usePredict && !empty($relayPoint)) {
+    $request->services = new EPrint\Model\StdServices();
+    $request->services->parcelshop = new EPrint\Model\ParcelShop();
+    $request->services->parcelshop->shopaddress = new EPrint\Model\ShopAddress();
+    $request->services->parcelshop->shopaddress->shopid = $relayPoint;
+}
 
 /* ---------------- Get response ---------------- */
 
@@ -103,27 +112,26 @@ foreach ($result->shipments as $shipment) {
     echo "Shipment#$idx tracking url: {$shipment->getTrackingUrl()}\n";
 }
 
-
 // Get label model
 /** @var \Ekyna\Component\Dpd\EPrint\Model\Label $label */
 $idx = 0;
 foreach ($result->labels as $label) {
     $idx++;
-    echo "Label#$idx: " . strlen($label->label) . "\n";
+    echo "Label#$idx: " . strlen($label->label) . " (" . $label->type . ")\n";
 
     if ($type === EPrint\Enum\ELabelType::PNG) {
         if (false === $im = imagecreatefromstring($label->label)) {
             throw new \Exception("Failed to retrieve the shipment label data.");
         }
 
-        $filename = sprintf('reference_%s.png', $idx);
+        $filename = $labelDir . DIRECTORY_SEPARATOR . sprintf('reference_%s.png', $idx);
 
         if (file_exists($filename)) unlink($filename);
 
         imagepng($im, $filename);
         imagedestroy($im);
     } else {
-        $filename = sprintf('reference_%s.pdf', $idx);
+        $filename = $labelDir . DIRECTORY_SEPARATOR . sprintf('reference_%s.pdf', $idx);
 
         if (file_exists($filename)) unlink($filename);
 
