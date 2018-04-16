@@ -12,6 +12,9 @@ use Ekyna\Component\Dpd\RequestInterface;
  * Class TerminateCollectionRequestRequest
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @property Model\Parcel   $parcel
+ * @property Model\Customer $customer
  */
 class TerminateCollectionRequestRequest extends AbstractInput implements RequestInterface
 {

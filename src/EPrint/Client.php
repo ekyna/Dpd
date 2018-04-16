@@ -82,6 +82,7 @@ class Client extends \Soapclient
                 'CreateReverseInverseShipmentResponse'           => Response\CreateReverseInverseShipmentResponse::class,
                 'CreateReverseInverseShipmentWithLabelsResponse' => Response\CreateReverseInverseShipmentWithLabelsResponse::class,
                 'CreateCollectionRequestResponse'                => Response\CreateCollectionRequestResponse::class,
+                'TerminateCollectionRequestResponse'             => Response\TerminateCollectionRequestResponse::class,
                 'GetLabelResponse'                               => Response\GetLabelResponse::class,
                 'GetShipmentResponse'                            => Response\GetShipmentResponse::class,
             ],
