@@ -2,33 +2,26 @@
 
 // TODO Fill with your credentials
 
-$cache = false;
-$debug = true;
-
-$ePrintConfig = [
-    'login'    => '',
-    'password' => '',
-    'cache'    => $cache,
-    'debug'    => $debug,
-    'test'     => true,
+$shipmentConfig = [
+    "login"               => '',
+    "password"            => '',
+    "payer_id"            => '',
+    "payer_address_id"    => '',
+    "sender_id"           => '',
+    "sender_address_id"   => '',
+    "departure_unit_id"   => '',
+    "sender_zip_code"     => '',
+    "sender_country_code" => '',
 ];
 
 $pudoConfig = [
     'carrier' => 'EXA',
     'key'     => 'deecd7bc81b71fcc0e292b53e826c48f',
-    'cache'   => $cache,
-    'debug'   => $debug,
+    'cache'   => false,
+    'debug'   => true,
 ];
 
-$classicNumber = '';
-$predictNumber = '';
-
-$centerNumber = '';
-$countryCode = '';
-
-$usePredict = false;
-
-$labelDir = __DIR__ . DIRECTORY_SEPARATOR . 'tmp';
-if (!is_dir($labelDir)) {
-    mkdir($labelDir);
+$labelsDir = __DIR__ . DIRECTORY_SEPARATOR . 'tmp';
+if (!is_dir($labelsDir)) {
+    mkdir($labelsDir);
 }

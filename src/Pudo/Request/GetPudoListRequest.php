@@ -17,15 +17,14 @@ use Ekyna\Component\Dpd\RequestInterface;
  * @property string $countrycode
  * @property string $requestID
  * @property string $date_from
+ * @property string $max_pudo_number
+ * @property string $max_distance_search
+ * @property string $weight
+ * @property string $category
+ * @property string $holiday_tolerant
  */
 class GetPudoListRequest extends AbstractInput implements RequestInterface
 {
-    public $max_pudo_number = '6';
-    public $max_distance_search = '';
-    public $weight = '';
-    public $category = '';
-    public $holiday_tolerant = '';
-
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
@@ -36,8 +35,8 @@ class GetPudoListRequest extends AbstractInput implements RequestInterface
             ->addField(new Definition\AlphaNumeric('requestID', true, 30))
             ->addField(new Definition\Date('date_from', true))
             ->addField(new Definition\AlphaNumeric('max_pudo_number', true, 255))
-            ->addField(new Definition\AlphaNumeric('max_distance_search', false, 255))
-            ->addField(new Definition\AlphaNumeric('weight', false, 255))
+            ->addField(new Definition\AlphaNumeric('max_distance_search', true, 255))
+            ->addField(new Definition\AlphaNumeric('weight', true, 255))
             ->addField(new Definition\AlphaNumeric('category', false, 255))
             ->addField(new Definition\AlphaNumeric('holiday_tolerant', false, 255))
         ;

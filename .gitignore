@@ -1,5 +1,6 @@
 /examples/config.php
-/examples/tmp
+/examples/labels
+!/examples/labels/.gitkeep
 /bin
 /vendor
 /test.php

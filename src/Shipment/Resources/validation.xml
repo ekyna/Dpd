@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Ekyna\Component\Dpd\Shipment\Model\Address">
+        <property name="name">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="firstName">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>relay</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="lastName">
+            <constraint name="NotBlank">
+                <option name="groups">
+                    <value>relay</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="houseNumber">
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="street">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="streetInfo">
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="zipCode">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="city">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="countryCode">
+            <constraint name="NotBlank"/>
+            <constraint name="Country"/>
+        </property>
+        <property name="phoneNumber">
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="mobileNumber">
+            <constraint name="NotBLank">
+                <option name="groups">
+                    <value>predict</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="email">
+            <constraint name="Email"/>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="code1">
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="code2">
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="intercom">
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="additionalInfo">
+            <constraint name="Length">
+                <option name="max">70</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Model\Credentials">
+        <property name="payerId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">8</option>
+            </constraint>
+        </property>
+        <property name="payerAddressId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">8</option>
+            </constraint>
+        </property>
+        <property name="senderId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">8</option>
+            </constraint>
+        </property>
+        <property name="senderAddressId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">8</option>
+            </constraint>
+        </property>
+        <property name="departureUnitId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">4</option>
+            </constraint>
+        </property>
+        <property name="senderZipCode">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="senderCountryCode">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">2</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Model\Manifest">
+        <property name="language">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">fr</constraint>
+            <!--<constraint name="Language"/>-->
+        </property>
+        <property name="labelFormat">
+            <constraint name="NotBlank"/>
+            <constraint name="Choice">
+                <option name="callback">
+                    <value>Ekyna\Component\Dpd\Shipment\Model\Formats</value>
+                    <value>getConstants</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="fileType">
+            <constraint name="NotBlank"/>
+            <constraint name="Choice">
+                <option name="callback">
+                    <value>Ekyna\Component\Dpd\Shipment\Model\FileTypes</value>
+                    <value>getConstants</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="dpi">
+            <!-- TODO NotBLank if fileType = ZPL ou EPL -->
+            <constraint name="NotBlank"/>
+            <constraint name="Choice">
+                <option name="callback">
+                    <value>Ekyna\Component\Dpd\Shipment\Model\Dpi</value>
+                    <value>getConstants</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Model\Parcel">
+        <property name="cref1">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="cref2">
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="cref3">
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="cref4">
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="hinsAmount">
+            <constraint name="GreaterThan">0</constraint>
+        </property>
+        <property name="weight">
+            <constraint name="NotBlank"/>
+            <constraint name="GreaterThan">0</constraint>
+            <constraint name="LessThanOrEqual">
+                <option name="value">30</option>
+                <option name="groups">
+                    <value>classic</value>
+                    <value>predict</value>
+                    <value>international</value>
+                </option>
+            </constraint>
+            <constraint name="LessThanOrEqual">
+                <option name="value">20</option>
+                <option name="groups">
+                    <value>relay</value>
+                    <value>return</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\ShipmentRequest">
+        <property name="shipmentDate">
+            <constraint name="NotNull"/>
+        </property>
+        <property name="credentials">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+        <property name="receiver">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+            <constraint name="Ekyna\Component\Dpd\Shipment\Validator\Address">receiver</constraint>
+        </property>
+        <property name="replaceSenderAddress">
+            <constraint name="Valid"/>
+            <constraint name="Ekyna\Component\Dpd\Shipment\Validator\Address">sender</constraint>
+        </property>
+        <property name="parcelShopId">
+            <constraint name="NotNull">
+                <option name="groups">
+                    <value>relay</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="returnType">
+            <constraint name="NotNull">
+                <option name="groups">
+                    <value>return</value>
+                </option>
+            </constraint>
+            <constraint name="Choice">
+                <option name="callback">
+                    <value>Ekyna\Component\Dpd\Shipment\Model\ReturnTypes</value>
+                    <value>getConstants</value>
+                </option>
+            </constraint>
+        </property>
+        <property name="returnAddress">
+            <constraint name="Valid"/>
+            <constraint name="Ekyna\Component\Dpd\Shipment\Validator\Address">return</constraint>
+        </property>
+        <property name="parcels">
+            <constraint name="Count">
+                <option name="min">1</option>
+            </constraint>
+            <constraint name="Valid"/>
+        </property>
+        <property name="product">
+            <constraint name="NotBlank"/>
+            <constraint name="Choice">
+                <option name="callback">
+                    <value>Ekyna\Component\Dpd\Shipment\Model\Products</value>
+                    <value>getConstants</value>
+                </option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\ShipmentWithLabelRequest">
+        <property name="manifest">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\GetLabelRequest">
+        <property name="labelStartPosition">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">1</constraint>
+        </property>
+        <property name="shpIdList">
+            <!-- TODO Serialized value must not exceed 255 characters -->
+            <constraint name="Count">
+                <option name="min">1</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\ReprintLabelRequest">
+        <property name="labelStartPosition">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">1</constraint>
+        </property>
+        <property name="parcelNumber">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">14</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\ReturnOnDemandRequest">
+        <property name="labelStartPosition">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">1</constraint>
+        </property>
+        <property name="parcelNumber">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">14</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\CreatePickupOrderRequest">
+        <property name="reqChannel">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">E</constraint>
+        </property>
+        <property name="callType">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">01</constraint>
+        </property>
+        <property name="contactPerson">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">35</option>
+            </constraint>
+        </property>
+        <property name="fromDate">
+            <constraint name="NotNull"/>
+        </property>
+        <property name="toDate">
+            <constraint name="NotNull"/>
+        </property>
+        <constraint name="Ekyna\Component\Dpd\Shipment\Validator\CreatePickupOrderRequest"/>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\CancelPickupOrderRequest">
+        <property name="callId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\CreateCollectionRequest">
+        <property name="reqChannel">
+            <constraint name="NotBlank"/>
+            <constraint name="EqualTo">E</constraint>
+        </property>
+        <property name="custref">
+            <constraint name="Length">
+                <option name="max">8</option>
+            </constraint>
+        </property>
+        <property name="desiredPickupDate">
+            <constraint name="NotNull"/>
+        </property>
+        <property name="weight">
+            <constraint name="NotBlank"/>
+            <constraint name="GreaterThan">0</constraint>
+        </property>
+        <property name="pickupAddress">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+            <constraint name="Ekyna\Component\Dpd\Shipment\Validator\Address">pickup</constraint>
+        </property>
+        <property name="deliveryAddress">
+            <constraint name="NotNull"/>
+            <constraint name="Valid"/>
+            <constraint name="Ekyna\Component\Dpd\Shipment\Validator\Address">delivery</constraint>
+        </property>
+    </class>
+
+    <class name="Ekyna\Component\Dpd\Shipment\Request\CancelCollectionRequest">
+        <property name="callId">
+            <constraint name="Length">
+                <option name="max">10</option>
+            </constraint>
+        </property>
+        <property name="parcelNumber">
+            <constraint name="Length">
+                <option name="max">14</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

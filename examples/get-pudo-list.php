@@ -8,13 +8,15 @@ use Ekyna\Component\Dpd\Pudo;
 /* ---------------- Client and API ---------------- */
 
 require __DIR__ . '/config.php';
-
 $api = new Pudo\Api($pudoConfig);
 
 /* ---------------- Create request ---------------- */
 
 $request = new Pudo\Request\GetPudoListRequest();
 
+$request->max_pudo_number = '10';
+$request->max_distance_search = '10km';
+$request->weight = '2';
 $request->address = '32 rue de rennes';
 $request->zipCode = '35230';
 $request->city = 'Noyal-Châtillon-sur-Seiche';

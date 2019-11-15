@@ -8,7 +8,6 @@ use Ekyna\Component\Dpd\Pudo;
 /* ---------------- Client and API ---------------- */
 
 require __DIR__ . '/config.php';
-
 $api = new Pudo\Api($pudoConfig);
 
 /* ---------------- Create request ---------------- */
