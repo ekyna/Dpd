@@ -3,7 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\Shipment\Factory;
+use Ekyna\Component\Dpd\Factory;
 use Ekyna\Component\Dpd\Shipment\Model;
 use Ekyna\Component\Dpd\Shipment\Request;
 
@@ -11,8 +11,8 @@ use Ekyna\Component\Dpd\Shipment\Request;
 /* ---------------- Get the API ---------------- */
 
 require __DIR__ . '/config.php';
-$factory = new Factory($shipmentConfig);
-$api = $factory->getApi();
+$factory = new Factory($config);
+$api = $factory->getShipmentApi();
 
 
 /* ---------------- Create shipment ---------------- */

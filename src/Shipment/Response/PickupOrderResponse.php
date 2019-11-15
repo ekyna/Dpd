@@ -4,8 +4,7 @@ namespace Ekyna\Component\Dpd\Shipment\Response;
 
 /**
  * Class PickupOrderResponse
- * @package Ekyna\Component\Dpd\Shipment\Response
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @author Etienne Dauvergne <contact@ekyna.com>
  */
 class PickupOrderResponse implements ResponseInterface
 {

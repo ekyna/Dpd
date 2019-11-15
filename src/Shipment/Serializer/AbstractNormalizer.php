@@ -9,8 +9,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class AbstractNormalizer
- * @package Ekyna\Component\Dpd\Shipment\Serializer
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @author Etienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractNormalizer implements NormalizerInterface, NormalizerAwareInterface
 {

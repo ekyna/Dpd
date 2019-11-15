@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Ekyna\Component\Dpd\Relay\Request\ListRequest">
+        <property name="address">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">200</option>
+            </constraint>
+        </property>
+        <property name="zipCode">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">5</option>
+            </constraint>
+        </property>
+        <property name="city">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">50</option>
+            </constraint>
+        </property>
+        <property name="countryCode">
+            <constraint name="Length">
+                <option name="max">2</option>
+            </constraint>
+        </property>
+        <property name="requestId">
+            <constraint name="NotBlank"/>
+            <constraint name="Length">
+                <option name="max">30</option>
+            </constraint>
+        </property>
+        <property name="date">
+            <constraint name="NotNull"/>
+            <!-- TODO Greater than today -->
+        </property>
+        <property name="maxNumber">
+            <constraint name="GreaterThan">0</constraint>
+        </property>
+        <property name="maxDistance">
+            <constraint name="GreaterThan">0</constraint>
+        </property>
+        <property name="weight">
+            <constraint name="GreaterThan">0</constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

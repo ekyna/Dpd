@@ -2,9 +2,9 @@
 
 namespace Ekyna\Component\Dpd\Test\Shipment;
 
+use Ekyna\Component\Dpd\Factory;
 use Ekyna\Component\Dpd\Shipment\Api;
 use Ekyna\Component\Dpd\Shipment\Client;
-use Ekyna\Component\Dpd\Shipment\Factory;
 use Ekyna\Component\Dpd\Shipment\Model;
 use Ekyna\Component\Dpd\Shipment\Request;
 use Ekyna\Component\Dpd\Shipment\Response;

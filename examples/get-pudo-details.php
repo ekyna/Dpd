@@ -3,26 +3,24 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\Pudo;
+use Ekyna\Component\Dpd\Factory;
+use Ekyna\Component\Dpd\Relay;
 
 /* ---------------- Client and API ---------------- */
 
 require __DIR__ . '/config.php';
-$api = new Pudo\Api($pudoConfig);
+$factory = new Factory($config);
+$api = $factory->getRelayApi();
 
 /* ---------------- Create request ---------------- */
 
-$request = new Pudo\Request\GetPudoDetailsRequest();
-
-$request->pudo_id = 'P32805';
-
+$request = new Relay\Request\DetailRequest('P32805');
 
 /* ---------------- Get response ---------------- */
 
 // Use API helper
 try {
-    /** @var \Ekyna\Component\Dpd\Pudo\Response\GetPudoDetailsResponse $response */
-    $response = $api->GetPudoDetails($request);
+    $response = $api->getDetails($request);
 } catch (Exception\ExceptionInterface $e) {
     echo "Error: " . $e->getMessage();
     exit();
@@ -30,4 +28,3 @@ try {
 echo get_class($response) . "\n";
 
 var_dump($response);
-

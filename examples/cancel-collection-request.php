@@ -2,21 +2,21 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Ekyna\Component\Dpd\Shipment\Factory;
-use Ekyna\Component\Dpd\Shipment\Request;
 use Ekyna\Component\Dpd\Exception;
+use Ekyna\Component\Dpd\Factory;
+use Ekyna\Component\Dpd\Shipment\Request;
 
 
 /* ---------------- Get the API ---------------- */
 
 require __DIR__ . '/config.php';
-$factory = new Factory($shipmentConfig);
-$api = $factory->getApi();
+$factory = new Factory($config);
+$api = $factory->getShipmentApi();
 
 
 /* ---------------- Create shipment with label ---------------- */
 
-$parcelNumber = ""; // TODO set the parcel number
+$parcelNumber = "10770941397120"; // TODO set the parcel number
 if (empty($parcelNumber)) {
     throw new \RuntimeException("Please set the parcel number.");
 }

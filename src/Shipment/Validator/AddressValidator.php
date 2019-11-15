@@ -12,8 +12,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Class AddressValidator
- * @package Ekyna\Component\Dpd\Shipment\Validator
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @author Etienne Dauvergne <contact@ekyna.com>
  */
 class AddressValidator extends ConstraintValidator
 {

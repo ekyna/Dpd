@@ -26,7 +26,7 @@ class Api
     private $credentials;
 
     /**
-     * @var ValidatorInterface;
+     * @var ValidatorInterface
      */
     private $validator;
 

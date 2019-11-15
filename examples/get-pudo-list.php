@@ -3,34 +3,38 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\Pudo;
+use Ekyna\Component\Dpd\Factory;
+use Ekyna\Component\Dpd\Relay;
 
-/* ---------------- Client and API ---------------- */
+/* ---------------- Get the API ---------------- */
 
 require __DIR__ . '/config.php';
-$api = new Pudo\Api($pudoConfig);
+$factory = new Factory($config);
+$api = $factory->getRelayApi();
 
 /* ---------------- Create request ---------------- */
 
-$request = new Pudo\Request\GetPudoListRequest();
+$request = new Relay\Request\ListRequest();
 
-$request->max_pudo_number = '10';
-$request->max_distance_search = '10km';
-$request->weight = '2';
-$request->address = '32 rue de rennes';
-$request->zipCode = '35230';
-$request->city = 'Noyal-Châtillon-sur-Seiche';
-$request->countrycode = 'FR';
-$request->requestID = 'test';
-$request->date_from = (new \DateTime('+1 day'))->format('d/m/Y');
-
+$request
+    ->setAddress('32 rue de rennes')
+    ->setZipCode('35230')
+    ->setCity('Noyal-Châtillon-sur-Seiche')
+    ->setCountryCode('fr')
+    ->setRequestId(uniqid())
+    ->setDate(new \DateTime('+1 day'))
+    ->setWeight(2)
+    //->setMaxDistance(10)
+    //->setMaxNumber(10)
+    //->setCategory('')
+    //->setHoliday(false)
+;
 
 /* ---------------- Get response ---------------- */
 
 // Use API helper
 try {
-    /** @var \Ekyna\Component\Dpd\Pudo\Response\GetPudoListResponse $response */
-    $response = $api->GetPudoList($request);
+    $response = $api->getList($request);
 } catch (Exception\ExceptionInterface $e) {
     echo "Error: " . $e->getMessage();
     exit();
@@ -38,4 +42,3 @@ try {
 echo get_class($response) . "\n";
 
 var_dump($response);
-

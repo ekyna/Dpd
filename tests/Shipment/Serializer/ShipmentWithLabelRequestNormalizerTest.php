@@ -82,7 +82,7 @@ class ShipmentWithLabelRequestNormalizerTest extends TestCase
 
         $model = new ShipmentWithLabelRequest();
         $model
-            ->setShipmentDate(new \DateTime("2019-11-08"))
+            ->setShipmentDate(new \DateTime("2020-01-01"))
             ->setCredentials($credentials)
             ->setReceiver($receiver)
             ->setReplaceSender(true)
@@ -97,7 +97,7 @@ class ShipmentWithLabelRequestNormalizerTest extends TestCase
             ->setManifest(new Model\Manifest());
 
         $expected = [
-            "shipmentDate"              => "20191108",
+            "shipmentDate"              => "20200101",
             // Credentials
             "payerId"                   => 12,
             "payerAddressId"            => 34,

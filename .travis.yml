@@ -2,7 +2,6 @@ language: php
 sudo: false
 
 cache:
-  yarn: true
   directories:
     - $HOME/.composer/cache/files
 
@@ -12,34 +11,27 @@ matrix:
     - php: 7.1
     - php: 7.2
     - php: 7.3
-    # 'php: nightly' is PHP 8.0
+    - php: 7.3
+      env: SYMFONY_VERSION="^3.0"
     - php: 7.4snapshot
-    - php: 7.3
-      env: SYMFONY="3.4.*"
-        ACTION="update"
-    - php: 7.3
-      env: SYMFONY="4.4.*"
-        ACTION="update"
-    - php: 7.3
-      env: SYMFONY="5.0.*"
-        ACTION="update"
   allow_failures:
     - php: 7.4snapshot
-    - php: 7.3
-      env: SYMFONY="3.4.*"
-        ACTION="update"
-    - php: 7.3
-      env: SYMFONY="4.4.*"
-        ACTION="update"
-    - php: 7.3
-      env: SYMFONY="5.0.*"
-        ACTION="update"
 
 before_install:
   - composer self-update
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require
+    "symfony/validator:${SYMFONY_VERSION}"
+    "symfony/serializer:${SYMFONY_VERSION}"
+    "symfony/config:${SYMFONY_VERSION}"
+    "symfony/intl:${SYMFONY_VERSION}"
+    "symfony/property-access:${SYMFONY_VERSION}"
+    --no-update; fi;
 
 install:
-  - travis_retry composer update --no-interaction --no-ansi --no-progress --no-suggest --optimize-autoloader --prefer-stable
+  - composer update --prefer-source --no-suggest
 
 script:
   - ./vendor/bin/phpunit
+
+notifications:
+  email: false

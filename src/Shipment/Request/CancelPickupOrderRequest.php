@@ -4,8 +4,7 @@ namespace Ekyna\Component\Dpd\Shipment\Request;
 
 /**
  * Class CancelPickupOrderRequest
- * @package Ekyna\Component\Dpd\Shipment\Request
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @author Etienne Dauvergne <contact@ekyna.com>
  */
 class CancelPickupOrderRequest implements RequestInterface
 {

@@ -6,8 +6,7 @@ use Ekyna\Component\Dpd\Shipment\Model\Credentials;
 
 /**
  * Class AbstractCredentialRequest
- * @package Ekyna\Component\Dpd\Shipment\Request
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @author Etienne Dauvergne <contact@ekyna.com>
  */
 abstract class AbstractCredentialRequest implements RequestInterface
 {

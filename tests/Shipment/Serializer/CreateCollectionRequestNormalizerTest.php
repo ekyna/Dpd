@@ -20,7 +20,7 @@ class CreateCollectionRequestNormalizerTest extends TestCase
         $model
             ->setCustref(123456789)
             ->setWeight(2)
-            ->setDesiredPickupDate($date = new \DateTime('+1 day'));
+            ->setDesiredPickupDate($date = new \DateTime('2020-01-01'));
 
         $model
             ->getPickupAddress()
@@ -55,7 +55,7 @@ class CreateCollectionRequestNormalizerTest extends TestCase
             "custref"                => "123456789",
             "weight"                 => 2.0,
             "parcelCount"            => 1,
-            "desiredPickupDate"      => $date->format("Ymd"),
+            "desiredPickupDate"      => "20200101",
             // Pickup
             "cname"                  => "firmName",
             "cname2"                 => "firstName lastName",

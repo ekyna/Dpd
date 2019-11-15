@@ -16,15 +16,16 @@
     ],
     "homepage": "https://github.com/ekyna/Dpd",
     "license": "MIT",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=7.1",
-        "guzzlehttp/guzzle": "*",
-        "symfony/validator": "*",
-        "symfony/serializer": "*",
-        "symfony/config": "*",
-        "symfony/intl": "*",
-        "symfony/property-access": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "symfony/validator": "^3.0|^4.0|^5.0",
+        "symfony/serializer": "^3.0|^4.0|^5.0",
+        "symfony/config": "^3.0|^4.0|^5.0",
+        "symfony/intl": "^3.0|^4.0|^5.0",
+        "symfony/property-access": "^3.0|^4.0|^5.0",
+        "guzzlehttp/guzzle": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
@@ -37,11 +38,6 @@
     "autoload-dev": {
         "psr-4": {
             "Ekyna\\Component\\Dpd\\Test\\": "tests/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
         }
     }
 }

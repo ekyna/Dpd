@@ -14,6 +14,10 @@ class PickupOrderResponseDenormalizer implements DenormalizerInterface
 {
     public function denormalize($data, $type, $format = null, array $context = [])
     {
+        if (is_int(current(array_keys($data)))) {
+            $data = current($data);
+        }
+
         $keys = ['callId', 'responseMessage', 'coreInfoMessage'];
 
         if (0 < count($missing = array_diff($keys, array_keys($data)))) {

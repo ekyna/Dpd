@@ -6,8 +6,7 @@ use Ekyna\Component\Dpd\Shipment\Request\CreatePickupOrderRequest;
 
 /**
  * Class CreatePickupOrderRequestNormalizer
- * @package Ekyna\Component\Dpd\Shipment\Serializer
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @author Etienne Dauvergne <contact@ekyna.com>
  */
 class CreatePickupOrderRequestNormalizer extends AbstractNormalizer
 {
