@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ApiTest
- * @package Ekyna\Component\Dpd\Test\Shipment
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
 class ApiTest extends TestCase

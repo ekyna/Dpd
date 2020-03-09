@@ -43,11 +43,6 @@ final class Factory
      */
     private $relayApi;
 
-    /**
-     * @var Shipment\Model\Credentials
-     */
-    private $credentials;
-
 
     /**
      * Constructor.
@@ -82,14 +77,14 @@ final class Factory
      *
      * @return Relay\Api
      */
-    public function getRelayApi(): Relay\Api
+    public function getRelayApi(array $config = null): Relay\Api
     {
-        if ($this->relayApi) {
+        if (is_null($config) && $this->relayApi) {
             return $this->relayApi;
         }
 
         return $this->relayApi = new Relay\Api(
-            $this->createRelayClient(),
+            $this->createRelayClient($config),
             $this->getValidator(),
             $this->getSerializer()
         );
@@ -98,17 +93,19 @@ final class Factory
     /**
      * Returns the shipment API.
      *
+     * @param array|null $config
+     *
      * @return Shipment\Api
      */
-    public function getShipmentApi(): Shipment\Api
+    public function getShipmentApi(array $config = null): Shipment\Api
     {
-        if ($this->shipmentApi) {
+        if (is_null($config) && $this->shipmentApi) {
             return $this->shipmentApi;
         }
 
         return $this->shipmentApi = new Shipment\Api(
-            $this->createShipmentClient(),
-            $this->getCredentials(),
+            $this->createShipmentClient($config),
+            $this->getCredentials($config),
             $this->getValidator(),
             $this->getSerializer()
         );
@@ -117,42 +114,50 @@ final class Factory
     /**
      * Creates the shipment client.
      *
+     * @param array|null $config
+     *
      * @return Shipment\Client
      */
-    protected function createShipmentClient(): Shipment\Client
+    protected function createShipmentClient(array $config = null): Shipment\Client
     {
-        return new Shipment\Client($this->config['login'], $this->config['password']);
+        $config = array_replace($this->config, (array)$config);
+
+        return new Shipment\Client($config['login'], $config['password']);
     }
 
     /**
      * Creates the relay client.
      *
+     * @param array|null $config
+     *
      * @return Relay\Client
      */
-    protected function createRelayClient(): Relay\Client
+    protected function createRelayClient(array $config = null): Relay\Client
     {
-        return new Relay\Client($this->config['carrier'], $this->config['key']);
+        $config = array_replace($this->config, (array)$config);
+
+        return new Relay\Client($config['carrier'], $config['key']);
     }
 
     /**
      * Returns the credentials model.
      *
+     * @param array|null $config
+     *
      * @return Shipment\Model\Credentials
      */
-    protected function getCredentials(): Shipment\Model\Credentials
+    protected function getCredentials(array $config = null): Shipment\Model\Credentials
     {
-        if ($this->credentials) {
-            return $this->credentials;
-        }
+        $config = array_replace($this->config, (array)$config);
 
-        return $this->credentials = (new Shipment\Model\Credentials())
-            ->setPayerId($this->config['payer_id'])
-            ->setPayerAddressId($this->config['payer_address_id'])
-            ->setSenderId($this->config['sender_id'])
-            ->setSenderAddressId($this->config['sender_address_id'])
-            ->setDepartureUnitId($this->config['departure_unit_id'])
-            ->setSenderZipCode($this->config['sender_zip_code'])
-            ->setSenderCountryCode($this->config['sender_country_code']);
+        return (new Shipment\Model\Credentials())
+            ->setPayerId($config['payer_id'])
+            ->setPayerAddressId($config['payer_address_id'])
+            ->setSenderId($config['sender_id'])
+            ->setSenderAddressId($config['sender_address_id'])
+            ->setDepartureUnitId($config['departure_unit_id'])
+            ->setSenderZipCode($config['sender_zip_code'])
+            ->setSenderCountryCode($config['sender_country_code']);
     }
 
     /**
@@ -191,6 +196,7 @@ final class Factory
     public static function createValidator(): ValidatorInterface
     {
         return Validation::createValidatorBuilder()
+            // TODO Metadata cache or factory ?
             ->addXmlMapping(__DIR__ . '/Shipment/Resources/validation.xml')
             ->addXmlMapping(__DIR__ . '/Relay/Resources/validation.xml')
             ->getValidator();

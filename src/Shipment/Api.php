@@ -220,6 +220,7 @@ class Api
 
         $data = $this->client->call($path, $req);
 
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->serializer->denormalize($data, $responseClass, 'json');
     }
 

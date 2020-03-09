@@ -87,6 +87,7 @@ class Api
 
         $data = $this->client->call($path, $req);
 
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->serializer->deserialize($data, $responseClass, 'xml');
     }
 
