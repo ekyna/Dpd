@@ -19,6 +19,13 @@ $api = $factory->getShipmentApi();
 
 echo "Creating shipment with label...\n";
 
+
+$request = new Request\ShipmentWithLabelRequest();
+$request
+    ->setProduct(Model\Products::CLASSIC)
+    ->setReturnType(Model\ReturnTypes::ON_DEMAND)
+    ->setShipmentDate(new \DateTime("next monday"));  // Required
+
 $receiver = new Model\Address();
 $receiver
     // Firm OR (first AND last) names
@@ -39,22 +46,25 @@ $receiver
     ->setIntercom("Intercom")                         // Optional
     ->setAdditionalInfo("Delivery instructions");     // Optional
 
+$request->setReceiver($receiver); // Required
+
 $parcel = new Model\Parcel();
 $parcel
-    ->setCref1("Reference 1")   // Required
-    ->setCref2("Reference 2")   // Optional
-    ->setCref3("Reference 3")   // Optional
-    ->setCref4("Reference 4")   // Optional
+    ->setCref1("Reference 1.1") // Required
+    ->setCref2("Reference 1.2") // Optional
+    ->setCref3("Reference 1.3") // Optional
+    ->setCref4("Reference 1.4") // Optional
     ->setHinsAmount(666)        // Optional
     ->setWeight(2);             // Required
 
-$request = new Request\ShipmentWithLabelRequest();
-$request
-    ->setProduct(Model\Products::CLASSIC)
-    ->setReturnType(Model\ReturnTypes::ON_DEMAND)
-    ->setShipmentDate(new \DateTime("next monday"))  // Required
-    ->setReceiver($receiver)                         // Required
-    ->addParcel($parcel);                            // Required;
+$request->addParcel($parcel);                            // Required;
+
+$parcel = new Model\Parcel();
+$parcel
+    ->setCref1("Reference 2.1") // Required
+    ->setWeight(4);             // Required
+
+$request->addParcel($parcel);                            // Required;
 
 
 //  ----- To change the manifest ----

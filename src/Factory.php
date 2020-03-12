@@ -73,6 +73,16 @@ final class Factory
     }
 
     /**
+     * Returns the config.
+     *
+     * @return array
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
+    /**
      * Returns the relay API.
      *
      * @return Relay\Api

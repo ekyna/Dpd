@@ -61,6 +61,9 @@ class Client
         try {
             $response = $this->http->send($request);
         } catch (Http\Exception\ClientException $e) {
+            if (404 === $e->getResponse()->getStatusCode()) {
+                throw new ClientException("Unreachable URI");
+            }
             return $this->handleResponse($e->getResponse()->getBody()->getContents());
         }
 
