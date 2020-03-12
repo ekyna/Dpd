@@ -2,6 +2,10 @@
 
 PHP component for DPD shipment.
 
+DPD abandoned the new version of their web service for now. 
+
+:warning: __DPD abandoned the new version of their shipping API for now. This branch is not production ready.__ :warning:
+
 [![Build Status](https://travis-ci.org/ekyna/Dpd.svg?branch=master)](https://travis-ci.org/ekyna/Dpd)
 
 ## Installation
