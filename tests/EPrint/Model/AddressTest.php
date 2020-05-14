@@ -28,7 +28,7 @@ class AddressTest extends TestCase
         $address->countryPrefix = 'FR';
         $address->zipCode = '12345';
         $address->city = 'City';
-        $address->street = 'Street';
+        $address->street = 'Chaîne avec ’ caractères spéciaux';
         $address->phoneNumber = '12345678';
 
         $address->validate();

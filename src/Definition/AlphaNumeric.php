@@ -47,7 +47,7 @@ class AlphaNumeric extends AbstractField
             $this->throwValidationException("Expected string value", $prefix);
         }
 
-        if (strlen($value) > $this->length) {
+        if (mb_strlen($value) > $this->length) {
             $this->throwValidationException("Expected string with max length $this->length", $prefix);
         }
     }

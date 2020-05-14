@@ -21,11 +21,12 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.2"
+        "phpunit/phpunit": "~7.5"
     },
     "autoload": {
         "psr-4": {
-            "Ekyna\\Component\\Dpd\\": "src/"
+            "Ekyna\\Component\\Dpd\\": "src/",
+            "Ekyna\\Component\\Dpd\\": "tests/"
         }
     },
     "extra": {

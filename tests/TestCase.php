@@ -2,15 +2,15 @@
 
 namespace Ekyna\Component\Dpd;
 
+use PHPUnit\Framework\TestCase as BaseCase;
 use Ekyna\Component\Dpd\Exception;
-use Ekyna\Component\Dpd\AbstractInput;
 
 /**
  * Class TestCase
  * @author  Etienne Dauvergne <contact@ekyna.com>
  * @package Ekyna\Component\Dpd
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends BaseCase
 {
     protected function expectValidationException()
     {
