@@ -47,24 +47,26 @@ class Client extends \Soapclient
      * @param bool   $cache
      * @param bool   $debug
      * @param bool   $test
+     * @param bool   $sslCheck
      */
     public function __construct(
         string $login,
         string $password,
         bool $cache = false,
         bool $debug = false,
-        bool $test = false
+        bool $test = false,
+        bool $sslCheck = true
     ) {
-        $this->login = $login;
+        $this->login    = $login;
         $this->password = $password;
-        $this->debug = $debug;
+        $this->debug    = $debug;
 
-        parent::__construct($test ? static::TEST_WSDL : static::PROD_WSDL, [
-            'cache_wsdl'   => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
-            'trace'        => $debug ? 1 : 0,
-            'soap_version' => SOAP_1_2,
-            'compression'  => true,
-            'classmap'     => [
+        $options = [
+            'cache_wsdl'     => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
+            'trace'          => $debug ? 1 : 0,
+            'soap_version'   => SOAP_1_2,
+            'compression'    => true,
+            'classmap'       => [
                 'Address'                                        => Model\Address::class,
                 'ArrayOfLabel'                                   => Model\ArrayOfLabel::class,
                 'ArrayOfShipment'                                => Model\ArrayOfShipment::class,
@@ -86,7 +88,19 @@ class Client extends \Soapclient
                 'GetLabelResponse'                               => Response\GetLabelResponse::class,
                 'GetShipmentResponse'                            => Response\GetShipmentResponse::class,
             ],
-        ]);
+        ];
+
+        if (!$sslCheck) {
+            $options['stream_context'] = stream_context_create([
+                'ssl' => [
+                    'verify_peer'       => false,
+                    'verify_peer_name'  => false,
+                    'allow_self_signed' => true,
+                ],
+            ]);
+        }
+
+        parent::__construct($test ? static::TEST_WSDL : static::PROD_WSDL, $options);
     }
 
     /**
@@ -106,7 +120,7 @@ class Client extends \Soapclient
             $exception = new ClientException($e->getMessage(), $e->getCode(), $e);
 
             if ($this->debug) {
-                $exception->request = ClientException::formatXml($this->__getLastRequest());
+                $exception->request  = ClientException::formatXml($this->__getLastRequest());
                 $exception->response = ClientException::formatXml($this->__getLastResponse());
             }
 

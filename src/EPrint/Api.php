@@ -44,18 +44,19 @@ class Api
     public function __construct(array $config)
     {
         $this->config = array_replace_recursive([
-            'login'    => null,
-            'password' => null,
-            'cache'    => true,
-            'debug'    => false,
-            'test'     => false,
+            'login'     => null,
+            'password'  => null,
+            'cache'     => true,
+            'debug'     => false,
+            'test'      => false,
+            'ssl_check' => true,
         ], $config);
     }
 
     /**
      * Calls the method with parameters.
      *
-     * @param string $name The method name
+     * @param string $name       The method name
      * @param array  $parameters The parameters
      *
      * @return mixed
@@ -105,7 +106,8 @@ class Api
             $this->config['password'],
             $this->config['cache'],
             $this->config['debug'],
-            $this->config['test']
+            $this->config['test'],
+            $this->config['ssl_check']
         );
     }
 }
