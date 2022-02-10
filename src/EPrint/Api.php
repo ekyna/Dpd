@@ -20,6 +20,7 @@ use Ekyna\Component\Dpd\MethodInterface;
  * @method Response\TerminateCollectionRequestResponse TerminateCollectionRequest(Request\TerminateCollectionRequestRequest $request)
  * @method Response\GetShipmentResponse GetShipment(Request\ShipmentRequest $request)
  * @method Response\GetLabelResponse GetLabel(Request\ReceiveLabelRequest $request)
+ * @method Response\GetShippingResponse GetShipping(Request\GetShippingRequest $request)
  */
 class Api
 {

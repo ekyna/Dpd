@@ -19,14 +19,20 @@
     "require": {
         "php": ">=7.1",
         "ext-soap": "*",
+        "ext-gd": "*",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~7.5"
+        "phpunit/phpunit": "^7.0|^8.0"
     },
     "autoload": {
         "psr-4": {
             "Ekyna\\Component\\Dpd\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ekyna\\Component\\Dpd\\Tests\\": "tests/"
         }
     },
     "extra": {

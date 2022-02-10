@@ -1,9 +1,10 @@
 <?php
 
-namespace Ekyna\Component\Dpd\Definition;
+namespace Ekyna\Component\Dpd\Tests\Definition;
 
+use Ekyna\Component\Dpd\Definition\Enum;
 use Ekyna\Component\Dpd\EPrint\Enum\EnumInterface;
-use Ekyna\Component\Dpd\TestCase;
+use Ekyna\Component\Dpd\Tests\TestCase;
 
 /**
  * Class EnumTest

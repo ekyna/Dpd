@@ -2,7 +2,7 @@
 
 PHP component for DPD shipment.
 
-[![Build Status](https://travis-ci.org/ekyna/Dpd.svg?branch=master)](https://travis-ci.org/ekyna/Dpd)
+[![Build](https://github.com/ekyna/dpd/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/ekyna/dpd/actions/workflows/build.yml)
 
 
 ## Installation
@@ -21,3 +21,7 @@ _You will need credentials and IP address authorization. Please refer to your DP
 * [GetShipment](https://github.com/ekyna/Dpd/blob/master/examples/get-shipment.php)
 * [GetLabel](https://github.com/ekyna/Dpd/blob/master/examples/get-label.php)
 
+## Testing with Docker
+
+    docker build . -t dpd-test
+    docker run -it --rm dpd-test php examples/get-shipping.php

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ekyna\Component\Dpd;
+namespace Ekyna\Component\Dpd\Tests;
 
 use PHPUnit\Framework\TestCase as BaseCase;
 use Ekyna\Component\Dpd\Exception;
@@ -20,30 +20,5 @@ class TestCase extends BaseCase
     protected function expectRuntimeException()
     {
         $this->expectException(Exception\RuntimeException::class);
-    }
-}
-
-/**
- * Class InvalidTestModel
- * @package Ekyna\Component\Dpd
- * @author  Etienne Dauvergne <contact@ekyna.com>
- */
-class InvalidTestModel
-{
-
-}
-
-/**
- * Class ValidTestModel
- * @package Ekyna\Component\Dpd
- * @author  Etienne Dauvergne <contact@ekyna.com>
- *
- * @property string $test
- */
-class ValidTestModel extends AbstractInput
-{
-    protected function buildDefinition(Definition\Definition $definition): void
-    {
-        $definition->addField(new Definition\Boolean('test', true));
     }
 }

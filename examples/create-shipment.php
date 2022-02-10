@@ -97,12 +97,3 @@ foreach ($result as $shipment) {
     // Tracking url:
     echo "Shipment #$idx tracking url: {$shipment->getTrackingUrl()}\n";
 }
-
-
-
-
-/*$result = $api->isAlive();
-echo var_export($result, true);
-
-$result = $api->getInfo();
-echo var_export($result, true);*/

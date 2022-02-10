@@ -1,10 +1,11 @@
 <?php
 
-namespace Ekyna\Component\Dpd\Definition;
+namespace Ekyna\Component\Dpd\Tests\Definition;
 
-use Ekyna\Component\Dpd\InvalidTestModel;
-use Ekyna\Component\Dpd\ValidTestModel;
-use Ekyna\Component\Dpd\TestCase;
+use Ekyna\Component\Dpd\Definition\Model;
+use Ekyna\Component\Dpd\Tests\InvalidTestModel;
+use Ekyna\Component\Dpd\Tests\ValidTestModel;
+use Ekyna\Component\Dpd\Tests\TestCase;
 
 /**
  * Class ModelTest

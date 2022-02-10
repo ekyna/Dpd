@@ -1,8 +1,9 @@
 <?php
 
-namespace Ekyna\Component\Dpd\Definition;
+namespace Ekyna\Component\Dpd\Tests\Definition;
 
-use Ekyna\Component\Dpd\TestCase;
+use Ekyna\Component\Dpd\Definition\Numeric;
+use Ekyna\Component\Dpd\Tests\TestCase;
 
 /**
  * Class NumericTest

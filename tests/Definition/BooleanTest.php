@@ -1,8 +1,9 @@
 <?php
 
-namespace Ekyna\Component\Dpd\Definition;
+namespace Ekyna\Component\Dpd\Tests\Definition;
 
-use Ekyna\Component\Dpd\TestCase;
+use Ekyna\Component\Dpd\Definition\Boolean;
+use Ekyna\Component\Dpd\Tests\TestCase;
 
 /**
  * Class BooleanTest

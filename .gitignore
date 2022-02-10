@@ -1,3 +1,4 @@
+/.phpunit.result.cache
 /examples/config.php
 /examples/tmp
 /bin

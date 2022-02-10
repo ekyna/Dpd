@@ -1,8 +1,9 @@
 <?php
 
-namespace Ekyna\Component\Dpd\EPrint\Model;
+namespace Ekyna\Component\Dpd\Tests\EPrint\Model;
 
-use Ekyna\Component\Dpd\TestCase;
+use Ekyna\Component\Dpd\EPrint\Model\Address;
+use Ekyna\Component\Dpd\Tests\TestCase;
 
 /**
  * Class AddressTest

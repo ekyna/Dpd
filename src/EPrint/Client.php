@@ -78,6 +78,7 @@ class Client extends \Soapclient
                 'ShipmentDataExtended'                           => Model\ShipmentDataExtended::class,
                 'ShipmentWithLabels'                             => Model\ShipmentWithLabels::class,
                 'ShipmentsWithLabels'                            => Model\ShipmentsWithLabels::class,
+                'Shipping'                                       => Model\Shipping::class,
                 'CreateShipmentResponse'                         => Response\CreateShipmentResponse::class,
                 'CreateMultiShipmentResponse'                    => Response\CreateMultiShipmentResponse::class,
                 'CreateShipmentWithLabelsResponse'               => Response\CreateShipmentWithLabelsResponse::class,
@@ -87,6 +88,7 @@ class Client extends \Soapclient
                 'TerminateCollectionRequestResponse'             => Response\TerminateCollectionRequestResponse::class,
                 'GetLabelResponse'                               => Response\GetLabelResponse::class,
                 'GetShipmentResponse'                            => Response\GetShipmentResponse::class,
+                'GetShippingResponse'                            => Response\GetShippingResponse::class,
             ],
         ];
 

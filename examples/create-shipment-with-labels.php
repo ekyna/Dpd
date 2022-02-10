@@ -109,11 +109,10 @@ $result = $response->CreateShipmentWithLabelsResult;
 echo get_class($result) . "\n";
 
 // Get shipments
-$idx = 1;
+$idx = 0;
 /** @var \Ekyna\Component\Dpd\EPrint\Model\Shipment $shipment */
 foreach ($result->shipments as $shipment) {
-    echo get_class($shipment) . "\n";
-
+    $idx++;
     // Tracking url:
     echo "Shipment#$idx tracking url: {$shipment->getTrackingUrl()}\n";
 }
