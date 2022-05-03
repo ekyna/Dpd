@@ -12,7 +12,7 @@ final class ETypeContact implements EnumInterface
 {
     const NO             = 'No';            // Désactive la notification
     const PREDICT        = 'Predict';       // Expédition Predict
-    const AUTOMATIC_SMS  = 'AutomaticSMS '; // Notification SMS
+    const AUTOMATIC_SMS  = 'AutomaticSMS'; // Notification SMS
     const AUTOMATIC_MAIL = 'AutomaticMail'; // Notification E-Mail
 
 
