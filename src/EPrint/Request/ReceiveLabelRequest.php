@@ -30,7 +30,7 @@ class ReceiveLabelRequest extends AbstractInput implements RequestInterface
         $definition
             ->addField(new Definition\Numeric('countrycode', true, 3))
             ->addField(new Definition\Numeric('centernumber', true, 3))
-            ->addField(new Definition\Numeric('parcelnumber', true, 9))
+            ->addField(new Definition\Numeric('parcelnumber', true, 14))
             ->addField(new Definition\Boolean('refnrasbarcode', false))
             ->addField(new Definition\Model('labelType', false, Model\LabelType::class))
             ->addField(new Definition\Model('bic3data', false, Model\Bic3LabelData::class));

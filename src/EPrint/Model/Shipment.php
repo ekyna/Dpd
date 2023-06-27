@@ -46,7 +46,7 @@ class Shipment extends AbstractInput
         $definition
             ->addField(new Definition\Numeric('countrycode', true, 3))
             ->addField(new Definition\Numeric('centernumber', true, 3))
-            ->addField(new Definition\Numeric('parcelnumber', true, 9))
+            ->addField(new Definition\Numeric('parcelnumber', true, 14))
             ->addField(new Definition\Numeric('barcode', true, 255))// TODO limit ?
             ->addField(new Definition\Enum('type', false, EType::class));
     }

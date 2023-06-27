@@ -25,6 +25,6 @@ class Parcel extends AbstractInput
         $definition
             ->addField(new Definition\Numeric('countrycode', true, 3))
             ->addField(new Definition\Numeric('centernumber', true, 3))
-            ->addField(new Definition\Numeric('parcelnumber', true, 9));
+            ->addField(new Definition\Numeric('parcelnumber', true, 14));
     }
 }

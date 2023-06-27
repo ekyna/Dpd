@@ -26,6 +26,6 @@ class RetourShipmentRequest extends AbstractInput implements RequestInterface
         $definition
             ->addField(new Definition\Numeric('countrycode', true, 3))
             ->addField(new Definition\Numeric('centernumber', true, 3))
-            ->addField(new Definition\Numeric('original_parcelnumber', true, 9));
+            ->addField(new Definition\Numeric('original_parcelnumber', true, 14));
     }
 }
