@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
@@ -15,7 +16,7 @@ use Ekyna\Component\Dpd\EPrint\Enum\ETypeInsurance;
  * @property string $value Montant de la valeur déclarée
  * @property string $type  Type de valeur déclarée
  *
- * @see \Ekyna\Component\Dpd\EPrint\Enum\ETypeInsurance
+ * @see ETypeInsurance
  */
 class ExtraInsurance extends AbstractInput
 {

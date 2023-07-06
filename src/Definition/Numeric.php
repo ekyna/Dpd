@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -13,7 +14,7 @@ class Numeric extends AbstractField
     /**
      * @var int
      */
-    private $size;
+    private int $size;
 
 
     /**
@@ -37,17 +38,17 @@ class Numeric extends AbstractField
     {
         if (empty($value)) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;
         }
 
         if ($value != intval($value)) {
-            $this->throwValidationException("Unexpected integer value", $prefix);
+            $this->throwValidationException('Unexpected integer value', $prefix);
         }
 
-        if (strlen((string) $value) > $this->size) {
+        if (strlen((string)$value) > $this->size) {
             $this->throwValidationException("Expected integer with max size $this->size", $prefix);
         }
     }

@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Enum;
@@ -10,8 +11,8 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class ETypeInsurance implements EnumInterface
 {
-    const BY_SHIPMENTS = 'byShipments'; // Au colis
-    const BY_WEIGHT    = 'byWeight';    // Au poids
+    public const BY_SHIPMENTS = 'byShipments'; // Au colis
+    public const BY_WEIGHT    = 'byWeight';    // Au poids
 
 
     /**
@@ -20,8 +21,8 @@ final class ETypeInsurance implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::BY_SHIPMENTS,
-            static::BY_WEIGHT,
+            ETypeInsurance::BY_SHIPMENTS,
+            ETypeInsurance::BY_WEIGHT,
         ];
     }
 

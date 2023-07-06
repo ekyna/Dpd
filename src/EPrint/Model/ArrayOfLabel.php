@@ -1,22 +1,25 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
 
+use ArrayObject;
 use Ekyna\Component\Dpd\OutputInterface;
 
 /**
  * Class ArrayOfLabel
  * @package Ekyna\Component\Dpd\Response
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @implements ArrayObject<int, Label>
  */
 class ArrayOfLabel extends \ArrayObject implements OutputInterface
 {
     /**
-     * @var Label|Label[]
+     * @var Label|array<Label>|null
      */
-    private $Label;
-
+    private Label|array|null $Label;
 
     /**
      * @inheritdoc

@@ -1,42 +1,31 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint;
 
 use Ekyna\Component\Dpd\Exception\ClientException;
 use Ekyna\Component\Dpd\ResponseInterface;
+use Exception;
+use SoapClient;
+use SoapHeader;
 
 /**
  * Class Client
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
-class Client extends \Soapclient
+class Client extends SoapClient
 {
-    const NAMESPACE = 'http://www.cargonet.software';
+    private const NAMESPACE = 'http://www.cargonet.software';
 
-    const PROD_WSDL = 'https://e-station.cargonet.software/dpd-eprintwebservice/eprintwebservice.asmx?WSDL';
-    const TEST_WSDL = 'http://92.103.148.116/exa-eprintwebservice/eprintwebservice.asmx?WSDL';
+    private const PROD_WSDL = 'https://e-station.cargonet.software/dpd-eprintwebservice/eprintwebservice.asmx?WSDL';
+    private const TEST_WSDL = 'http://92.103.148.116/exa-eprintwebservice/eprintwebservice.asmx?WSDL';
 
-    /**
-     * @var string
-     */
-    private $login;
-
-    /**
-     * @var string
-     */
-    private $password;
-
-    /**
-     * @var bool
-     */
-    private $debug;
-
-    /**
-     * @var \SoapHeader
-     */
-    private $header;
+    private string      $login;
+    private string      $password;
+    private bool        $debug;
+    private ?SoapHeader $header = null;
 
 
     /**
@@ -52,43 +41,62 @@ class Client extends \Soapclient
     public function __construct(
         string $login,
         string $password,
-        bool $cache = false,
-        bool $debug = false,
-        bool $test = false,
-        bool $sslCheck = true
+        bool   $cache = false,
+        bool   $debug = false,
+        bool   $test = false,
+        bool   $sslCheck = true
     ) {
-        $this->login    = $login;
+        $this->login = $login;
         $this->password = $password;
-        $this->debug    = $debug;
+        $this->debug = $debug;
 
         $options = [
-            'cache_wsdl'     => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
-            'trace'          => $debug ? 1 : 0,
-            'soap_version'   => SOAP_1_2,
-            'compression'    => true,
-            'classmap'       => [
-                'Address'                                        => Model\Address::class,
-                'ArrayOfLabel'                                   => Model\ArrayOfLabel::class,
-                'ArrayOfShipment'                                => Model\ArrayOfShipment::class,
-                'Contact'                                        => Model\Contact::class,
-                'Label'                                          => Model\Label::class,
-                'LabelResponse'                                  => Model\LabelResponse::class,
-                'MultiShipment'                                  => Model\MultiShipment::class,
-                'Shipment'                                       => Model\Shipment::class,
-                'ShipmentDataExtended'                           => Model\ShipmentDataExtended::class,
-                'ShipmentWithLabels'                             => Model\ShipmentWithLabels::class,
-                'ShipmentsWithLabels'                            => Model\ShipmentsWithLabels::class,
-                'Shipping'                                       => Model\Shipping::class,
-                'CreateShipmentResponse'                         => Response\CreateShipmentResponse::class,
-                'CreateMultiShipmentResponse'                    => Response\CreateMultiShipmentResponse::class,
-                'CreateShipmentWithLabelsResponse'               => Response\CreateShipmentWithLabelsResponse::class,
-                'CreateReverseInverseShipmentResponse'           => Response\CreateReverseInverseShipmentResponse::class,
-                'CreateReverseInverseShipmentWithLabelsResponse' => Response\CreateReverseInverseShipmentWithLabelsResponse::class,
-                'CreateCollectionRequestResponse'                => Response\CreateCollectionRequestResponse::class,
-                'TerminateCollectionRequestResponse'             => Response\TerminateCollectionRequestResponse::class,
-                'GetLabelResponse'                               => Response\GetLabelResponse::class,
-                'GetShipmentResponse'                            => Response\GetShipmentResponse::class,
-                'GetShippingResponse'                            => Response\GetShippingResponse::class,
+            'cache_wsdl'   => $cache ? WSDL_CACHE_BOTH : WSDL_CACHE_NONE,
+            'trace'        => $debug ? 1 : 0,
+            'soap_version' => SOAP_1_2,
+            'compression'  => true,
+            'classmap'     => [
+                'Address'                                          => Model\Address::class,
+                'ArrayOfLabel'                                     => Model\ArrayOfLabel::class,
+                'ArrayOfServiceEntry'                              => Model\ArrayOfServiceEntry::class,
+                'ArrayOfShipment'                                  => Model\ArrayOfShipment::class,
+                'ArrayOfShipmentBc'                                => Model\ArrayOfShipmentBc::class,
+                'BcDataExt'                                        => Model\BcDataExt::class,
+                'Contact'                                          => Model\Contact::class,
+                'Label'                                            => Model\Label::class,
+                'LabelBcResponse'                                  => Model\LabelBcResponse::class,
+                'LabelResponse'                                    => Model\LabelResponse::class,
+                'MultiShipment'                                    => Model\MultiShipment::class,
+                'MultiShipmentBc'                                  => Model\MultiShipmentBc::class,
+                'Sameday'                                          => Model\Sameday::class,
+                'ServiceEntry'                                     => Model\ServiceEntry::class,
+                'Shipment'                                         => Model\Shipment::class,
+                'ShipmentBc'                                       => Model\ShipmentBc::class,
+                'ShipmentDataExtended'                             => Model\ShipmentDataExtended::class,
+                'ShipmentDataExtendedBc'                           => Model\ShipmentDataExtendedBc::class,
+                'ShipmentWithLabels'                               => Model\ShipmentWithLabels::class,
+                'ShipmentWithLabelsBc'                             => Model\ShipmentWithLabelsBc::class,
+                'ShipmentsWithLabels'                              => Model\ShipmentsWithLabels::class,
+                'ShipmentsWithLabelsBc'                            => Model\ShipmentsWithLabelsBc::class,
+                'Shipping'                                         => Model\Shipping::class,
+                'CreateShipmentResponse'                           => Response\CreateShipmentResponse::class,
+                'CreateMultiShipmentResponse'                      => Response\CreateMultiShipmentResponse::class,
+                'CreateMultiShipmentBcResponse'                    => Response\CreateMultiShipmentBcResponse::class,
+                'CreateShipmentWithLabelsResponse'                 => Response\CreateShipmentWithLabelsResponse::class,
+                'CreateShipmentWithLabelsBcResponse'               => Response\CreateShipmentWithLabelsBcResponse::class,
+                'CreateReverseInverseShipmentResponse'             => Response\CreateReverseInverseShipmentResponse::class,
+                'CreateReverseInverseShipmentBcResponse'           => Response\CreateReverseInverseShipmentBcResponse::class,
+                'CreateReverseInverseShipmentWithLabelsResponse'   => Response\CreateReverseInverseShipmentWithLabelsResponse::class,
+                'CreateReverseInverseShipmentWithLabelsBcResponse' => Response\CreateReverseInverseShipmentWithLabelsBcResponse::class,
+                'CreateCollectionRequestResponse'                  => Response\CreateCollectionRequestResponse::class,
+                'CreateCollectionRequestBcResponse'                => Response\CreateCollectionRequestBcResponse::class,
+                'TerminateCollectionRequestResponse'               => Response\TerminateCollectionRequestResponse::class,
+                'TerminateCollectionRequestBcResponse'             => Response\TerminateCollectionRequestBcResponse::class,
+                'GetLabelResponse'                                 => Response\GetLabelResponse::class,
+                'GetLabelBcResponse'                               => Response\GetLabelBcResponse::class,
+                'GetShipmentResponse'                              => Response\GetShipmentResponse::class,
+                'GetShipmentBcResponse'                            => Response\GetShipmentBcResponse::class,
+                'GetShippingResponse'                              => Response\GetShippingResponse::class,
             ],
         ];
 
@@ -118,11 +126,11 @@ class Client extends \Soapclient
     {
         try {
             return $this->__soapCall($method, $arguments, null, $this->getHeader());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $exception = new ClientException($e->getMessage(), $e->getCode(), $e);
 
             if ($this->debug) {
-                $exception->request  = ClientException::formatXml($this->__getLastRequest());
+                $exception->request = ClientException::formatXml($this->__getLastRequest());
                 $exception->response = ClientException::formatXml($this->__getLastResponse());
             }
 
@@ -133,15 +141,15 @@ class Client extends \Soapclient
     /**
      * Returns the header.
      *
-     * @return \SoapHeader
+     * @return SoapHeader
      */
-    protected function getHeader(): \SoapHeader
+    protected function getHeader(): SoapHeader
     {
         if ($this->header) {
             return $this->header;
         }
 
-        return $this->header = new \SoapHeader(static::NAMESPACE, 'UserCredentials', [
+        return $this->header = new SoapHeader(static::NAMESPACE, 'UserCredentials', [
             'userid'   => $this->login,
             'password' => $this->password,
         ]);

@@ -1,17 +1,18 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Request;
 
+use Ekyna\Component\Dpd\AbstractInput;
 use Ekyna\Component\Dpd\Definition;
 use Ekyna\Component\Dpd\EPrint\Model;
-use Ekyna\Component\Dpd\AbstractInput;
 use Ekyna\Component\Dpd\RequestInterface;
 
 /**
  * Class ReceiveLabelRequest
- * @package Ekyna\Component\Dpd
- * @author  Etienne Dauvergne <contact@ekyna.com>
+ * @package    Ekyna\Component\Dpd
+ * @author     Etienne Dauvergne <contact@ekyna.com>
  *
  * @property int                 $countrycode  Code pays (250 = France)
  * @property int                 $centernumber Code agence
@@ -19,6 +20,8 @@ use Ekyna\Component\Dpd\RequestInterface;
  * @property bool                $refnrasbarcode
  * @property Model\LabelType     $labelType    Type d'étiquette
  * @property Model\Bic3LabelData $bic3data
+ *
+ * @deprecated Use ReceiveLabelBcRequest (GetLabelBc api method)
  */
 class ReceiveLabelRequest extends AbstractInput implements RequestInterface
 {

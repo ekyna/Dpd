@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Enum;
@@ -10,10 +11,14 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class ELabelType implements EnumInterface
 {
-    const PNG    = 'Default'; // Format PNG (valeur par défaut)
-    const PDF    = 'PDF';     // Format PDF
-    const PDF_A6 = 'PDF_A6';  // Format PDF – A6
-    const ZPL    = 'ZPL';     // Format ZPL (Zebra Programming Language)
+    public const PNG       = 'Default'; // Format PNG (valeur par défaut)
+    public const PDF       = 'PDF';     // Format PDF
+    public const PDF_A6    = 'PDF_A6';  // Format PDF – A6
+    public const ZPL       = 'ZPL';     // Format ZPL (Zebra Programming Language)
+    public const ZPL300    = 'ZPL300';
+    public const ZPL_A6    = 'ZPL_A6';
+    public const ZPL300_A6 = 'ZPL300_A6';
+    public const EPL       = 'EPL';
 
 
     /**
@@ -22,10 +27,14 @@ final class ELabelType implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::PNG,
-            static::PDF,
-            static::PDF_A6,
-            static::ZPL
+            ELabelType::PNG,
+            ELabelType::PDF,
+            ELabelType::PDF_A6,
+            ELabelType::ZPL,
+            ELabelType::ZPL300,
+            ELabelType::ZPL_A6,
+            ELabelType::ZPL300_A6,
+            ELabelType::EPL,
         ];
     }
 

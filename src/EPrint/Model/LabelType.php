@@ -1,11 +1,12 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
 
+use Ekyna\Component\Dpd\AbstractInput;
 use Ekyna\Component\Dpd\Definition;
 use Ekyna\Component\Dpd\EPrint\Enum\ELabelType;
-use Ekyna\Component\Dpd\AbstractInput;
 
 /**
  * Class LabelType
@@ -21,7 +22,7 @@ class LabelType extends AbstractInput
      *
      * @see ELabelType
      */
-    public $type = ELabelType::PNG;
+    public string $type = ELabelType::PNG;
 
 
     /**

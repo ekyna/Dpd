@@ -1,13 +1,14 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
 
+use Ekyna\Component\Dpd\AbstractInput;
 use Ekyna\Component\Dpd\Definition;
 use Ekyna\Component\Dpd\EPrint\Api;
 use Ekyna\Component\Dpd\EPrint\Enum\EType;
 use Ekyna\Component\Dpd\Exception\RuntimeException;
-use Ekyna\Component\Dpd\AbstractInput;
 
 /**
  * Class Shipment
@@ -29,10 +30,10 @@ class Shipment extends AbstractInput
      *
      * @throws RuntimeException
      */
-    public function getTrackingUrl()
+    public function getTrackingUrl(): string
     {
         if (!isset($this->parcelnumber)) {
-            throw new RuntimeException("Shipment has no parcel number.");
+            throw new RuntimeException('Shipment has no parcel number.');
         }
 
         return sprintf(Api::TRACKING_URL, $this->parcelnumber);

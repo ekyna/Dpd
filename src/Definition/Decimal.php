@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -10,15 +11,8 @@ namespace Ekyna\Component\Dpd\Definition;
  */
 class Decimal extends AbstractField
 {
-    /**
-     * @var int
-     */
-    private $scale;
-
-    /**
-     * @var int
-     */
-    private $precision;
+    private int $scale;
+    private int $precision;
 
 
     /**
@@ -44,21 +38,21 @@ class Decimal extends AbstractField
     {
         if (empty($value)) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;
         }
 
-        if (!is_numeric($value) || empty($value)) {
-            $this->throwValidationException("Unexpected string value", $prefix);
+        if (!is_numeric($value)) {
+            $this->throwValidationException('Unexpected string value', $prefix);
         }
 
         $value = (string)$value;
 
-        if (false !== strpos($value, '.')) {
+        if (str_contains($value, '.')) {
             list($integer, $decimal) = explode('.', $value);
-        } else if (0 === strpos($value, '.')) {
+        } elseif (str_starts_with($value, '.')) {
             $integer = '0';
             $decimal = substr($value, 1);
         } else {

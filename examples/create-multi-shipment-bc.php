@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Ekyna\Component\Dpd\Exception;
@@ -7,30 +9,17 @@ use Ekyna\Component\Dpd\EPrint;
 
 /* ---------------- Client and API ---------------- */
 
-require __DIR__ . '/config.php';
+$config = require __DIR__ . '/config.php';
 
-$api = new EPrint\Api($ePrintConfig);
+$api = new EPrint\Api($config['eprint']);
 
 /* ---------------- Create request ---------------- */
 
 // Shipment request
 $request = new EPrint\Request\MultiShipmentRequest();
-$request->customer_centernumber = $centerNumber;
-$request->customer_countrycode = $countryCode;
-
-if ($usePredict) {
-    // Predict
-    $request->customer_number = $predictNumber;
-
-    // Predict contact
-    $request->services = new EPrint\Model\MultiServices();
-    $request->services->contact = new EPrint\Model\Contact();
-    $request->services->contact->type = EPrint\Enum\ETypeContact::PREDICT;
-    $request->services->contact->sms = '0611111111';
-} else {
-    // Classic
-    $request->customer_number = $classicNumber;
-}
+$request->customer_centernumber = $config['center_number'];
+$request->customer_countrycode = $config['country_code'];
+$request->customer_number = $config['customer_number'];
 
 // Receiver address
 $request->receiveraddress = new EPrint\Model\Address();
@@ -72,6 +61,12 @@ $request->addSlave($slave);
 
 // [...]
 
+// (Optional) notification
+$request->services = new EPrint\Model\MultiServices();
+$request->services->contact = new EPrint\Model\Contact();
+$request->services->contact->type = EPrint\Enum\ETypeContact::AUTOMATIC_SMS;
+$request->services->contact->sms = '0611111111';
+
 // (Optional) Theoretical shipment date ('d/m/Y' or 'd.m.Y')
 $request->shippingdate = date('d/m/Y');
 
@@ -80,11 +75,10 @@ $request->shippingdate = date('d/m/Y');
 
 // Use API helper
 try {
-    /** @var \Ekyna\Component\Dpd\EPrint\Response\CreateMultiShipmentResponse $response */
-    $response = $api->CreateMultiShipment($request);
+    $response = $api->CreateMultiShipmentBc($request);
 } catch (Exception\ExceptionInterface $e) {
-    echo "Error: " . $e->getMessage();
-    if ($debug && $e instanceof Exception\ClientException) {
+    echo 'Error: ' . $e->getMessage();
+    if ($config['debug'] && $e instanceof Exception\ClientException) {
         echo "\nRequest:\n" . $e->request;
         echo "\nResponse:\n" . $e->response;
     }
@@ -93,21 +87,16 @@ try {
 echo get_class($response) . "\n";
 
 // Get result
-/** @var \Ekyna\Component\Dpd\EPrint\Model\MultiShipment $result */
-$result = $response->CreateMultiShipmentResult;
-echo get_class($result) . "\n";
+$result = $response->CreateMultiShipmentBcResult;
 
 // Master shipment
 //$masterShipment = $result->mastershipment;
-//echo get_class($masterShipment) . "\n";
-//// Master shipment tracking url:
 //echo "Tracking Url: {$masterShipment->getTrackingUrl()}\n";
 
 // Get slaves shipments
-/** @var \Ekyna\Component\Dpd\EPrint\Model\Shipment $slaveShipment */
-foreach ($result->shipments as $slaveShipment) {
-    echo get_class($slaveShipment) . "\n";
-
-    // Slave shipment tracking url:
-    echo "Tracking Url: {$slaveShipment->getTrackingUrl()}\n";
+$idx = 0;
+foreach ($result->shipments as $shipment) {
+    $idx++;
+    echo "Shipment #$idx number: {$shipment->Shipment->BarcodeId}\n";
+    echo "Shipment #$idx tracking Url: {$shipment->getTrackingUrl()}\n";
 }

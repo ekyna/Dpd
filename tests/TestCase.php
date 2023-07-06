@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ekyna\Component\Dpd\Tests;
 
 use PHPUnit\Framework\TestCase as BaseCase;
@@ -10,7 +12,7 @@ use Ekyna\Component\Dpd\Exception;
  * @author  Etienne Dauvergne <contact@ekyna.com>
  * @package Ekyna\Component\Dpd
  */
-class TestCase extends BaseCase
+abstract class TestCase extends BaseCase
 {
     protected function expectValidationException()
     {

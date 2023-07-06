@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Method;
@@ -10,6 +11,7 @@ use Ekyna\Component\Dpd\MethodInterface;
 use Ekyna\Component\Dpd\OutputInterface;
 use Ekyna\Component\Dpd\RequestInterface;
 use Ekyna\Component\Dpd\ResponseInterface;
+use SoapParam;
 
 /**
  * Class AbstractMethod
@@ -19,19 +21,13 @@ use Ekyna\Component\Dpd\ResponseInterface;
 abstract class AbstractMethod implements MethodInterface
 {
     /**
-     * @var Client
-     */
-    private $client;
-
-
-    /**
      * Constructor.
      *
      * @param Client $client
      */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
+    public function __construct(
+        private readonly Client $client
+    ) {
     }
 
     /**
@@ -39,7 +35,7 @@ abstract class AbstractMethod implements MethodInterface
      *
      * @return Client
      */
-    protected function getClient()
+    protected function getClient(): Client
     {
         return $this->client;
     }
@@ -55,7 +51,7 @@ abstract class AbstractMethod implements MethodInterface
             $request->validate();
         }
 
-        $data = new \SoapParam(['request' => $request], $this->getMethodName());
+        $data = new SoapParam(['request' => $request], $this->getMethodName());
 
         $response = $this->getClient()->call($this->getMethodName(), [$data]);
 

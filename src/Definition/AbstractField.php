@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -12,15 +13,8 @@ use Ekyna\Component\Dpd\Exception;
  */
 abstract class AbstractField implements FieldInterface
 {
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var bool
-     */
-    protected $required;
+    protected string $name;
+    protected bool   $required;
 
 
     /**
@@ -46,8 +40,8 @@ abstract class AbstractField implements FieldInterface
     /**
      * Throws a validation exception.
      *
-     * @param string $message
-     * @param string $prefix
+     * @param string      $message
+     * @param string|null $prefix
      *
      * @throws Exception\ValidationException
      */

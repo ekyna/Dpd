@@ -1,6 +1,6 @@
 /.phpunit.result.cache
 /examples/config.php
-/examples/tmp
+/examples/labels
 /bin
 /vendor
 /test.php

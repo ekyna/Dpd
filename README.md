@@ -15,13 +15,14 @@ PHP component for DPD shipment.
 
 _You will need credentials and IP address authorization. Please refer to your DPD contact to get access granted._ 
 
-* [CreateShipment](https://github.com/ekyna/Dpd/blob/master/examples/create-shipment.php)
-* [CreateShipmentWithLabels](https://github.com/ekyna/Dpd/blob/master/examples/create-shipment-with-labels.php)
-* [CreateMultiShipment](https://github.com/ekyna/Dpd/blob/master/examples/create-multi-shipment.php)
-* [GetShipment](https://github.com/ekyna/Dpd/blob/master/examples/get-shipment.php)
-* [GetLabel](https://github.com/ekyna/Dpd/blob/master/examples/get-label.php)
+Copy ./examples/config.php.dist into ./examples/config.php and fill credentials.
+
+* [CreateShipmentWithLabelsBc](https://github.com/ekyna/Dpd/blob/master/examples/create-shipment-with-labels-bc_classic.php)
+* [CreateMultiShipmentBc](https://github.com/ekyna/Dpd/blob/master/examples/create-multi-shipment-bc.php)
+* [GetShipmentBc](https://github.com/ekyna/Dpd/blob/master/examples/get-shipment-bc.php)
+* [GetLabelBc](https://github.com/ekyna/Dpd/blob/master/examples/get-label-bc.php)
 
 ## Testing with Docker
 
     docker build . -t dpd-test
-    docker run -it --rm dpd-test php examples/get-shipping.php
+    docker run -it --rm dpd-test php examples/create-multi-shipment-bc.php

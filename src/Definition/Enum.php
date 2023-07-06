@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -13,10 +14,7 @@ use Ekyna\Component\Dpd\Exception;
  */
 class Enum extends AbstractField
 {
-    /**
-     * @var string
-     */
-    private $class;
+    private string $class;
 
 
     /**
@@ -44,7 +42,7 @@ class Enum extends AbstractField
     {
         if (empty($value)) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;

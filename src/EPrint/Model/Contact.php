@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
@@ -17,7 +18,7 @@ use Ekyna\Component\Dpd\EPrint\Enum\ETypeContact;
  * @property string $type     Type de notification
  * @property string $autoText Instructions
  *
- * @see \Ekyna\Component\Dpd\EPrint\Enum\ETypeContact
+ * @see     ETypeContact
  */
 class Contact extends AbstractInput
 {

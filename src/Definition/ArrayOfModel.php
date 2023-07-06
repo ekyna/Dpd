@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -13,10 +14,7 @@ use Ekyna\Component\Dpd\InputInterface;
  */
 class ArrayOfModel extends AbstractField
 {
-    /**
-     * @var string
-     */
-    private $class;
+    private string $class;
 
 
     /**
@@ -44,19 +42,19 @@ class ArrayOfModel extends AbstractField
     {
         if (null === $value) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;
         }
 
         if (!is_array($value)) {
-            $this->throwValidationException("Expected array value", $prefix);
+            $this->throwValidationException('Expected array value', $prefix);
         }
 
         foreach ($value as $object) {
             if (!$object instanceof $this->class) {
-                $this->throwValidationException("Expected instance of " . $this->class, $prefix);
+                $this->throwValidationException('Expected instance of ' . $this->class, $prefix);
             }
 
             /** @var InputInterface $object */

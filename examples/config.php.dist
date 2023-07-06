@@ -1,34 +1,29 @@
 <?php
 
-// TODO Fill with your credentials
+declare(strict_types=1);
 
 $cache = false;
 $debug = true;
 
-$ePrintConfig = [
-    'login'    => '',
-    'password' => '',
-    'cache'    => $cache,
-    'debug'    => $debug,
-    'test'     => true,
+require __DIR__ . '/functions.php';
+
+return [
+    'customer_number' => '18028',
+    'center_number'   => '77',
+    'country_code'    => '250',
+    'eprint'          => [
+        'login'     => 'GeoLabelTestEnv',
+        'password'  => '', // TODO Password
+        'cache'     => $cache,
+        'debug'     => $debug,
+        'test'      => true,
+        'ssl_check' => false,
+    ],
+    'pudo'            => [
+        'carrier' => 'EXA',
+        'key'     => 'deecd7bc81b71fcc0e292b53e826c48f',
+        'cache'   => $cache,
+        'debug'   => $debug,
+    ],
+    'debug'           => $debug,
 ];
-
-$pudoConfig = [
-    'carrier' => 'EXA',
-    'key'     => 'deecd7bc81b71fcc0e292b53e826c48f',
-    'cache'   => $cache,
-    'debug'   => $debug,
-];
-
-$classicNumber = '';
-$predictNumber = '';
-
-$centerNumber = '';
-$countryCode = '';
-
-$usePredict = false;
-
-$labelDir = __DIR__ . DIRECTORY_SEPARATOR . 'tmp';
-if (!is_dir($labelDir)) {
-    mkdir($labelDir);
-}

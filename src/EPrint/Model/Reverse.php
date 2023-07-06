@@ -1,11 +1,12 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
 
+use Ekyna\Component\Dpd\AbstractInput;
 use Ekyna\Component\Dpd\Definition;
 use Ekyna\Component\Dpd\EPrint\Enum\ETypeReverse;
-use Ekyna\Component\Dpd\AbstractInput;
 
 /**
  * Class Reverse
@@ -16,7 +17,7 @@ use Ekyna\Component\Dpd\AbstractInput;
  * @property string  $type            Type de Retour
  * @property int     $expireOffset    Période de validité du retour de colis (en jours)
  *
- * @see ETypeReverse
+ * @see     ETypeReverse
  */
 class Reverse extends AbstractInput
 {

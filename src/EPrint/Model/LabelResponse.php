@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
@@ -10,9 +11,11 @@ use Ekyna\Component\Dpd\OutputInterface;
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
- * @property int          $countrycode  Code pays (250 = France)
- * @property int          $centernumber Code agence
- * @property int          $parcelnumber N° de colis
+ * @property int $countrycode  Code pays (250 = France)
+ * @property int $centernumber Code agence
+ * @property int $parcelnumber N° de colis
+ *
+ * @deprecated
  */
 class LabelResponse implements OutputInterface
 {

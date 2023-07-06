@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ekyna\Component\Dpd\EPrint\Method;
 
 use Ekyna\Component\Dpd\EPrint\Request\TerminateCollectionRequestRequest;

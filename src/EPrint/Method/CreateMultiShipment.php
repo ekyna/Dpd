@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Method;
@@ -9,6 +10,8 @@ use Ekyna\Component\Dpd\EPrint\Request\MultiShipmentRequest;
  * Class CreateMultiShipment
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @deprecated Use CreateMultiShipmentBc method.
  */
 class CreateMultiShipment extends AbstractMethod
 {

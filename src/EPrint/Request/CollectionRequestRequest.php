@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Request;
@@ -15,7 +16,6 @@ use Ekyna\Component\Dpd\RequestInterface;
  *
  * @property Model\Address                   $receiveraddress       Adresse destinataire
  * @property Model\Address                   $shipperaddress        Adresse expéditeur
- * @property Model\CollectionRequestServices $services              Services
  * @property string                          $customer_countrycode  Code pays 250 = France
  * @property string                          $customer_centernumber Code agence
  * @property string                          $customer_number       N° de compte
@@ -29,6 +29,8 @@ use Ekyna\Component\Dpd\RequestInterface;
  * @property string                          $referencenumber       Référence interne 1
  * @property string                          $reference2            Référence interne 2
  * @property string                          $reference3            Référence interne 3
+ * @property string                          $reference4            Référence interne 4
+ * @property Model\CollectionRequestServices $services              Services
  * @property bool                            $dayCheckDone
  */
 class CollectionRequestRequest extends AbstractInput implements RequestInterface
@@ -39,12 +41,13 @@ class CollectionRequestRequest extends AbstractInput implements RequestInterface
     protected function buildDefinition(Definition\Definition $definition): void
     {
         $definition
+            // optional in WSDL / required in doc
+            ->addField(new Definition\Model('receiveraddress', true, Model\Address::class))
+            // optional in WSDL / required in doc
+            ->addField(new Definition\Model('shipperaddress', true, Model\Address::class))
             ->addField(new Definition\Numeric('customer_countrycode', true, 3))
             ->addField(new Definition\Numeric('customer_centernumber', true, 3))
             ->addField(new Definition\Numeric('customer_number', true, 6))
-            ->addField(new Definition\Model('receiveraddress', true, Model\Address::class))// optional in WSDL / required in doc
-            ->addField(new Definition\Model('shipperaddress', true, Model\Address::class))// optional in WSDL / required in doc
-            ->addField(new Definition\Model('services', true, Model\CollectionRequestServices::class))
             ->addField(new Definition\Numeric('parcel_count', true, 2))
             ->addField(new Definition\Date('pick_date', false))
             ->addField(new Definition\Time('time_from', false))
@@ -55,6 +58,8 @@ class CollectionRequestRequest extends AbstractInput implements RequestInterface
             ->addField(new Definition\AlphaNumeric('referencenumber', false, 35))
             ->addField(new Definition\AlphaNumeric('reference2', false, 35))
             ->addField(new Definition\AlphaNumeric('reference3', false, 35))
+            ->addField(new Definition\AlphaNumeric('reference4', false, 35))
+            ->addField(new Definition\Model('services', true, Model\CollectionRequestServices::class))
             ->addField(new Definition\Boolean('dayCheckDone', false)); // TODO nullable
     }
 }

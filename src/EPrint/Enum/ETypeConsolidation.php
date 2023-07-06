@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Enum;
@@ -10,9 +11,9 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class ETypeConsolidation implements EnumInterface
 {
-    const COMBINED_DELIVERY               = 'CombinedDelivery';              // Consolidation Livraison
-    const COMBINED_INVOICING              = 'CombinedInvoicing';             // Consolidation Facturation
-    const COMBINED_DELIVERY_AND_INVOICING = 'CombinedDeliveryAndInvoicing '; // Consolidation Livraison + Facturation
+    public const COMBINED_DELIVERY               = 'CombinedDelivery';              // Consolidation Livraison
+    public const COMBINED_INVOICING              = 'CombinedInvoicing';             // Consolidation Facturation
+    public const COMBINED_DELIVERY_AND_INVOICING = 'CombinedDeliveryAndInvoicing '; // Consolidation Livraison + Facturation
 
 
     /**
@@ -21,9 +22,9 @@ final class ETypeConsolidation implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::COMBINED_DELIVERY,
-            static::COMBINED_INVOICING,
-            static::COMBINED_DELIVERY_AND_INVOICING,
+            ETypeConsolidation::COMBINED_DELIVERY,
+            ETypeConsolidation::COMBINED_INVOICING,
+            ETypeConsolidation::COMBINED_DELIVERY_AND_INVOICING,
         ];
     }
 

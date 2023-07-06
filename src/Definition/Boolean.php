@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -17,14 +18,14 @@ class Boolean extends AbstractField
     {
         if (null === $value) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;
         }
 
         if (!is_bool($value)) {
-            $this->throwValidationException("Unexpected boolean value", $prefix);
+            $this->throwValidationException('Unexpected boolean value', $prefix);
         }
     }
 }

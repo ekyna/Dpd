@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Enum;
@@ -10,9 +11,9 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class EBic3Mode implements EnumInterface
 {
-    const ONLY_STD_LABELS = 'OnlyStdLabels';
-    const ONLY_BIC_3      = 'OnlyBic3';
-    const ALL             = 'All';
+    public const ONLY_STD_LABELS = 'OnlyStdLabels';
+    public const ONLY_BIC_3      = 'OnlyBic3';
+    public const ALL             = 'All';
 
 
     /**
@@ -21,9 +22,9 @@ final class EBic3Mode implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::ONLY_STD_LABELS,
-            static::ONLY_BIC_3,
-            static::ALL,
+            EBic3Mode::ONLY_STD_LABELS,
+            EBic3Mode::ONLY_BIC_3,
+            EBic3Mode::ALL,
         ];
     }
 

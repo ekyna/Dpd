@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
@@ -15,7 +16,7 @@ use Ekyna\Component\Dpd\EPrint\Enum\EType;
  * @property string $type  Type d'étiquette
  * @property string $label Etiquette sous forme de Bytearrays
  *
- * @see \Ekyna\Component\Dpd\EPrint\Enum\EType
+ * @see EType
  */
 class Label extends AbstractInput
 {
@@ -26,6 +27,6 @@ class Label extends AbstractInput
     {
         $definition
             ->addField(new Definition\Enum('type', true, EType::class))
-            ->addField(new Definition\AlphaNumeric('label', false, 3));
+            ->addField(new Definition\AlphaNumeric('label', false, null));
     }
 }

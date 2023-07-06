@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Enum;
@@ -10,8 +11,8 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class ETypeReverse implements EnumInterface
 {
-    const ON_DEMAND = 'OnDemand'; // Retour en Relais - Demandé
-    const PREPARED = 'Prepared';  // Retour en Relais - Préparé
+    public const ON_DEMAND = 'OnDemand';  // Retour en Relais - Demandé
+    public const PREPARED  = 'Prepared';  // Retour en Relais - Préparé
 
 
     /**
@@ -20,8 +21,8 @@ final class ETypeReverse implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::ON_DEMAND,
-            static::PREPARED,
+            ETypeReverse::ON_DEMAND,
+            ETypeReverse::PREPARED,
         ];
     }
 

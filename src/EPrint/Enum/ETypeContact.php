@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Enum;
@@ -10,10 +11,10 @@ namespace Ekyna\Component\Dpd\EPrint\Enum;
  */
 final class ETypeContact implements EnumInterface
 {
-    const NO             = 'No';            // Désactive la notification
-    const PREDICT        = 'Predict';       // Expédition Predict
-    const AUTOMATIC_SMS  = 'AutomaticSMS'; // Notification SMS
-    const AUTOMATIC_MAIL = 'AutomaticMail'; // Notification E-Mail
+    public const NO             = 'No';            // Désactive la notification
+    public const PREDICT        = 'Predict';       // Expédition Predict
+    public const AUTOMATIC_SMS  = 'AutomaticSMS'; // Notification SMS
+    public const AUTOMATIC_MAIL = 'AutomaticMail'; // Notification E-Mail
 
 
     /**
@@ -22,10 +23,10 @@ final class ETypeContact implements EnumInterface
     public static function getValues(): array
     {
         return [
-            static::NO,
-            static::PREDICT,
-            static::AUTOMATIC_SMS,
-            static::AUTOMATIC_MAIL,
+            ETypeContact::NO,
+            ETypeContact::PREDICT,
+            ETypeContact::AUTOMATIC_SMS,
+            ETypeContact::AUTOMATIC_MAIL,
         ];
     }
 

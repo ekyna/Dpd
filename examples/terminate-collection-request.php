@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Ekyna\Component\Dpd\Exception;
@@ -7,36 +9,28 @@ use Ekyna\Component\Dpd\EPrint;
 
 /* ---------------- Client and API ---------------- */
 
-require __DIR__ . '/config.php';
+$config = require __DIR__ . '/config.php';
 
-$api = new EPrint\Api($ePrintConfig);
+$api = new EPrint\Api($config['eprint']);
 
 /* ---------------- Create request ---------------- */
 
 // Shipment request
-$request = new EPrint\Request\TerminateCollectionRequestRequest();
+$request = new EPrint\Request\TerminateCollectionRequestBcRequest();
 
-$request->parcel = new EPrint\Model\Parcel();
-$request->parcel->parcelnumber = '123456789';
-$request->parcel->countrycode = $countryCode;
-$request->parcel->centernumber = $centerNumber;
+$request->barcode = '250077964427540017';
 
 $request->customer = new EPrint\Model\Customer();
-$request->customer->number = $usePredict ? $predictNumber : $classicNumber;
-$request->customer->countrycode = $countryCode;
-$request->customer->centernumber = $centerNumber;
+$request->customer->centernumber = $config['center_number'];
+$request->customer->countrycode = $config['country_code'];
+$request->customer->number = $config['customer_number'];
 
 /* ---------------- Get response ---------------- */
 
 // Use API helper
 try {
-    $response = $api->TerminateCollectionRequest($request);
+    $response = $api->TerminateCollectionRequestBc($request);
 } catch (Exception\ExceptionInterface $e) {
-    echo "Error: " . $e->getMessage();
-    if ($debug && $e instanceof Exception\ClientException) {
-        echo "\nRequest:\n" . $e->request;
-        echo "\nResponse:\n" . $e->response;
-    }
-    exit();
+    dump_error($e);
+    throw $e;
 }
-echo get_class($response) . "\n";

@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint;
@@ -12,29 +13,32 @@ use Ekyna\Component\Dpd\MethodInterface;
  * @author  Etienne Dauvergne <contact@ekyna.com>
  *
  * @method Response\CreateShipmentResponse CreateShipment(Request\StdShipmentRequest $request)
+ * @method Response\CreateShipmentWithLabelsBcResponse CreateShipmentWithLabelsBc(Request\StdShipmentLabelRequest $request)
+ * @method Response\CreateMultiShipmentBcResponse CreateMultiShipmentBc(Request\MultiShipmentRequest $request)
+ * @method Response\CreateReverseInverseShipmentBcResponse CreateReverseInverseShipmentBc(Request\ReverseShipmentRequest $request)
+ * @method Response\CreateReverseInverseShipmentWithLabelsBcResponse CreateReverseInverseShipmentWithLabelsBc(Request\ReverseShipmentLabelRequest $request)
+ * @method Response\CreateCollectionRequestBcResponse CreateCollectionRequestBc(Request\CollectionRequestRequest $request)
+ * @method Response\TerminateCollectionRequestBcResponse TerminateCollectionRequestBc(Request\TerminateCollectionRequestBcRequest $request)
+ * @method Response\GetShipmentBcResponse GetShipmentBc(Request\ShipmentRequestBc $request)
+ * @method Response\GetLabelBcResponse GetLabelBc(Request\ReceiveLabelBcRequest $request)
+ * @method Response\GetShippingResponse GetShipping(Request\GetShippingRequest $request)
+ *
+ * Deprecated methods
  * @method Response\CreateShipmentWithLabelsResponse CreateShipmentWithLabels(Request\StdShipmentLabelRequest $request)
  * @method Response\CreateMultiShipmentResponse CreateMultiShipment(Request\MultiShipmentRequest $request)
- * @method Response\CreateReverseInverseShipmentResponse CreateReverseInverseShipment(Request\ReverseShipmentRequest $request)
- * @method Response\CreateReverseInverseShipmentWithLabelsResponse CreateReverseInverseShipmentWithLabels(Request\ReverseShipmentLabelRequest $request)
  * @method Response\CreateCollectionRequestResponse CreateCollectionRequest(Request\CollectionRequestRequest $request)
+ * @method Response\CreateReverseInverseShipmentResponse CreateReverseInverseShipment(Request\ReverseShipmentRequest $request)
  * @method Response\TerminateCollectionRequestResponse TerminateCollectionRequest(Request\TerminateCollectionRequestRequest $request)
+ * @method Response\CreateReverseInverseShipmentWithLabelsResponse CreateReverseInverseShipmentWithLabels(Request\ReverseShipmentLabelRequest $request)
  * @method Response\GetShipmentResponse GetShipment(Request\ShipmentRequest $request)
  * @method Response\GetLabelResponse GetLabel(Request\ReceiveLabelRequest $request)
- * @method Response\GetShippingResponse GetShipping(Request\GetShippingRequest $request)
  */
 class Api
 {
-    const TRACKING_URL = 'http://www.dpd.fr/traces_%s';
+    public const TRACKING_URL = 'https://www.dpd.fr/traces_%s';
 
-    /**
-     * @var array
-     */
-    private $config;
-
-    /**
-     * @var Client
-     */
-    private $client;
+    private array   $config;
+    private ?Client $client = null;
 
 
     /**
@@ -88,7 +92,7 @@ class Api
             return new $class($this->getClient());
         }
 
-        throw new RuntimeException("Method {$name} does not exist");
+        throw new RuntimeException("Method $name does not exist");
     }
 
     /**

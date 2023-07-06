@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ekyna\Component\Dpd\Definition;
 
 /**
@@ -16,14 +18,14 @@ class Date extends AbstractField
     {
         if (empty($value)) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;
         }
 
-        if (!is_string($value) || empty($value)) {
-            $this->throwValidationException("Expected string value", $prefix);
+        if (!is_string($value)) {
+            $this->throwValidationException('Expected string value', $prefix);
         }
 
         if (!preg_match('~^[0-9]{2}[\./][0-9]{2}[\./][0-9]{4}$~', $value)) {

@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
@@ -14,7 +15,7 @@ use Ekyna\Component\Dpd\EPrint\Enum\ETypeConsolidation;
  *
  * @property string $type
  *
- * @see \Ekyna\Component\Dpd\EPrint\Enum\ETypeConsolidation
+ * @see ETypeConsolidation
  */
 class Consolidation extends AbstractInput
 {

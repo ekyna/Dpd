@@ -1,7 +1,10 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
+
+use Ekyna\Component\Dpd\Exception\ValidationException;
 
 /**
  * Interface FieldInterface
@@ -20,10 +23,10 @@ interface FieldInterface
     /**
      * Validates the given value.
      *
-     * @param mixed  $value
-     * @param string $prefix
+     * @param mixed       $value
+     * @param string|null $prefix
      *
-     * @throws \Ekyna\Component\Dpd\Exception\ValidationException
+     * @throws ValidationException
      */
-    public function validate($value, string $prefix = null): void;
+    public function validate(mixed $value, string $prefix = null): void;
 }

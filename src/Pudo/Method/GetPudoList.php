@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Pudo\Method;
@@ -9,9 +10,10 @@ use Ekyna\Component\Dpd\Pudo\Model\OpeningHour;
 use Ekyna\Component\Dpd\Pudo\Request\GetPudoListRequest;
 use Ekyna\Component\Dpd\Pudo\Response\GetPudoListResponse;
 use Ekyna\Component\Dpd\ResponseInterface;
+use SimpleXMLElement;
 
 /**
- * Class GetPudoDetails
+ * Class GetPudoList
  * @package Ekyna\Component\Dpd
  * @author  Etienne Dauvergne <contact@ekyna.com>
  */
@@ -29,7 +31,7 @@ class GetPudoList extends AbstractMethod
 
     protected function parseResponse(string $xml): ResponseInterface
     {
-        $root = new \SimpleXMLElement($xml);
+        $root = new SimpleXMLElement($xml);
 
         $response = new GetPudoListResponse((int)$root['quality'], (string)$root->REQUEST_ID);
 
@@ -44,8 +46,8 @@ class GetPudoList extends AbstractMethod
                 (string)$i->LOCAL_HINT,
                 (string)$i->ZIPCODE,
                 (string)$i->CITY,
-                (float)str_replace(',', '.', $i->LONGITUDE),
-                (float)str_replace(',', '.', $i->LATITUDE),
+                (float)str_replace(',', '.', (string)$i->LONGITUDE),
+                (float)str_replace(',', '.', (string)$i->LATITUDE),
                 (string)$i->MAP_URL,
                 (string)$i->AVAILABLE
             );

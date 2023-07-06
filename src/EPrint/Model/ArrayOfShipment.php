@@ -1,21 +1,25 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\EPrint\Model;
 
+use ArrayObject;
 use Ekyna\Component\Dpd\OutputInterface;
 
 /**
  * Class ArrayOfShipment
  * @package Ekyna\Component\Dpd\Response
  * @author  Etienne Dauvergne <contact@ekyna.com>
+ *
+ * @implements ArrayObject<int, Shipment>
  */
-class ArrayOfShipment extends \ArrayObject implements OutputInterface
+class ArrayOfShipment extends ArrayObject implements OutputInterface
 {
     /**
-     * @var Shipment|Shipment[]
+     * @var Shipment|array<Shipment>|null
      */
-    private $Shipment;
+    private Shipment|array|null $Shipment;
 
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
@@ -13,9 +14,9 @@ use Ekyna\Component\Dpd\Exception\DefinitionException;
 class Definition
 {
     /**
-     * @var FieldInterface[]
+     * @var array<int, FieldInterface>
      */
-    private $fields = [];
+    private array $fields = [];
 
 
     /**

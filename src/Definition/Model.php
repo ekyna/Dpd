@@ -1,10 +1,11 @@
 <?php
+
 declare (strict_types=1);
 
 namespace Ekyna\Component\Dpd\Definition;
 
-use Ekyna\Component\Dpd\InputInterface;
 use Ekyna\Component\Dpd\Exception;
+use Ekyna\Component\Dpd\InputInterface;
 
 /**
  * Class Model
@@ -13,10 +14,7 @@ use Ekyna\Component\Dpd\Exception;
  */
 class Model extends AbstractField
 {
-    /**
-     * @var string
-     */
-    private $class;
+    private string $class;
 
 
     /**
@@ -44,17 +42,17 @@ class Model extends AbstractField
     {
         if (null === $value) {
             if ($this->required) {
-                $this->throwValidationException("Value is required", $prefix);
+                $this->throwValidationException('Value is required', $prefix);
             }
 
             return;
         }
 
         if (!$value instanceof $this->class) {
-            $this->throwValidationException("Expected instance of " . $this->class, $prefix);
+            $this->throwValidationException('Expected instance of ' . $this->class, $prefix);
         }
 
-        /** @var InputInterface $value  */
+        /** @var InputInterface $value */
         $value->validate($prefix);
     }
 }
