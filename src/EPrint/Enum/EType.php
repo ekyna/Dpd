@@ -17,7 +17,11 @@ final class EType implements EnumInterface
     public const EPRINT_ATTACHMENT  = 'EPRINTATTACHMENT'; // Récapitulatif d’envoi
     public const MASTER             = 'MASTER';
     public const COLLECTION_REQUEST = 'COLLECTIONREQUEST';
-    public const BIC3               = 'BIC3';
+
+    // new GeoLabel constants
+    public const BIC3        = 'BIC3';
+    public const PROOFBIC3   = 'PROOFBIC3';            // Preuve de dépôt
+    public const REVERSEBIC3 = 'REVERSEBIC3';            // Preuve de dépôt
 
 
     /**
@@ -33,6 +37,8 @@ final class EType implements EnumInterface
             EType::MASTER,
             EType::COLLECTION_REQUEST,
             EType::BIC3,
+            EType::PROOFBIC3,
+            EType::REVERSEBIC3,
         ];
     }
 
