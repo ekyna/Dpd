@@ -2,8 +2,7 @@
 
 PHP component for DPD shipment.
 
-[![Build](https://github.com/ekyna/dpd/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/ekyna/dpd/actions/workflows/build.yml)
-
+[![Build](https://github.com/ekyna/Dpd/actions/workflows/build.yml/badge.svg)](https://github.com/ekyna/Dpd/actions/workflows/build.yml)
 
 ## Installation
 
