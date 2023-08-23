@@ -20,7 +20,7 @@ class Client extends SoapClient
     private const NAMESPACE = 'http://www.cargonet.software';
 
     private const PROD_WSDL = 'https://e-station.cargonet.software/dpd-eprintwebservice/eprintwebservice.asmx?WSDL';
-    private const TEST_WSDL = 'http://92.103.148.116/exa-eprintwebservice/eprintwebservice.asmx?WSDL';
+    private const TEST_WSDL = 'https://e-station-testenv.cargonet.software/eprintwebservice/eprintwebservice.asmx?WSDL';
 
     private string      $login;
     private string      $password;
